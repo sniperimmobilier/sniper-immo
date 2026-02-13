@@ -4,63 +4,76 @@
     <style>
     :root { --gold: linear-gradient(135deg, #d4af37 0%, #f2d472 50%, #b8860b 100%); }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #000; color: #fff; font-family: 'Helvetica', sans-serif; line-height: 1.2; }
+    body { background: #000; color: #fff; font-family: 'Helvetica', sans-serif; overflow-x: hidden; }
     
-    /* HEADER SANS VIDE */
-    .header-xl { 
-        background: #000; height: 130px; display: flex; align-items: center; 
-        padding: 0 20px; border-bottom: 2px solid #d4af37; width: 100%;
+    /* HEADER COMPACT HORIZONTAL */
+    .header-main { 
+        background: #000; 
+        height: 110px; 
+        display: flex; 
+        align-items: center; 
+        justify-content: space-between;
+        padding: 0 15px; 
+        border-bottom: 2px solid #d4af37;
+        gap: 10px;
     }
-    .s-logo { background: var(--gold); color: #000; padding: 10px 20px; font-weight: 900; font-size: 32px; border-radius: 5px; margin-right: 15px; }
-    .logo-txt { font-size: 22px; font-weight: bold; line-height: 1.1; }
-    .logo-txt span { background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 13px; letter-spacing: 3px; }
     
-    .live-indicator { margin-left: auto; text-align: center; }
-    .dot { width: 12px; height: 12px; background: #2ecc71; border-radius: 50%; margin: 0 auto; box-shadow: 0 0 10px #2ecc71; animation: pulse 1.5s infinite; }
-    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+    /* BLOC LOGO */
+    .logo-side { display: flex; align-items: center; flex-shrink: 0; }
+    .s-block { background: var(--gold); color: #000; padding: 8px 12px; font-weight: 900; font-size: 24px; border-radius: 4px; margin-right: 8px; }
+    .logo-txt { font-size: 16px; font-weight: bold; line-height: 1; }
+    .logo-txt span { color: #d4af37; font-size: 10px; letter-spacing: 1px; display: block; margin-top: 2px; }
 
-    /* SECTION JURIDIQUE SERRÉE */
-    .juridique-frame {
-        margin: 15px 20px;
-        padding: 20px;
-        border: 2px solid #d4af37;
-        background: rgba(212, 175, 55, 0.03);
+    /* BLOC JURIDIQUE CENTRAL */
+    .juridique-center {
+        flex-grow: 1;
         text-align: center;
-        border-radius: 10px;
+        border-left: 1px solid #333;
+        border-right: 1px solid #333;
+        padding: 0 10px;
     }
-    .juridique-frame h1 { 
+    .juridique-center h2 { 
         background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        font-size: 1.4rem; text-transform: uppercase; margin-bottom: 8px; font-weight: 900; 
+        font-size: 11px; text-transform: uppercase; font-weight: 900; letter-spacing: 0.5px;
     }
-    .juridique-frame p { color: #ccc; font-size: 0.9rem; font-weight: 300; }
+    .juridique-center p { color: #888; font-size: 9px; margin-top: 3px; text-transform: uppercase; }
 
-    /* MENU COMPACT */
-    .menu { padding: 0 20px 25px 20px; display: flex; flex-direction: column; gap: 10px; }
+    /* BLOC LIVE */
+    .live-side { flex-shrink: 0; text-align: center; min-width: 45px; }
+    .dot { width: 10px; height: 10px; background: #2ecc71; border-radius: 50%; margin: 0 auto; box-shadow: 0 0 8px #2ecc71; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+    .live-txt { color: #2ecc71; font-size: 8px; font-weight: bold; margin-top: 4px; display: block; }
+
+    /* MENU */
+    .menu { padding: 20px; display: flex; flex-direction: column; gap: 10px; }
     .btn { 
         display: flex; align-items: center; justify-content: space-between;
-        background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); 
-        color: #fff; padding: 20px; text-decoration: none; border-radius: 10px; 
-        font-weight: bold; text-transform: uppercase; font-size: 0.9rem;
+        background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.2); 
+        color: #fff; padding: 22px 20px; text-decoration: none; border-radius: 10px; 
+        font-weight: bold; text-transform: uppercase; font-size: 0.95rem;
     }
-    .btn i { color: #d4af37; font-size: 1.2rem; }
+    .btn i { color: #d4af37; font-size: 1.3rem; }
     .gold-btn { background: var(--gold); color: #000; border: none; }
     .gold-btn span, .gold-btn i { color: #000; font-weight: 900; }
 
     .footer { padding: 20px; text-align: center; color: #333; font-size: 9px; letter-spacing: 3px; }
     </style></head><body>
 
-    <div class="header-xl">
-        <div class="s-logo">S</div>
-        <div class="logo-txt">SNIPER<br><span>IMMOBILIER</span></div>
-        <div class="live-indicator">
-            <div class="dot"></div>
-            <span style="color:#2ecc71; font-size:8px; font-weight:bold; display:block; margin-top:4px;">LIVE</span>
+    <div class="header-main">
+        <div class="logo-side">
+            <div class="s-block">S</div>
+            <div class="logo-txt">SNIPER<br><span>IMMOBILIER</span></div>
         </div>
-    </div>
 
-    <div class="juridique-frame">
-        <h1>SÉCURITÉ JURIDIQUE</h1>
-        <p>Expertise foncière et notariale en Algérie. Investissez avec certitude.</p>
+        <div class="juridique-center">
+            <h2>SÉCURITÉ JURIDIQUE</h2>
+            <p>Protection Foncière</p>
+        </div>
+
+        <div class="live-side">
+            <div class="dot"></div>
+            <span class="live-txt">LIVE</span>
+        </div>
     </div>
 
     <div class="menu">
