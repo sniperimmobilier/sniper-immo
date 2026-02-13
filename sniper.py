@@ -3,90 +3,88 @@ import time
 
 def publier():
     t1, t2 = "ghp_SF28AkaI0lTzfadzGx6t", "DeUDVnGjnR3uD1lt"
-    v = int(time.time())
-    os.system(f"git add . && git commit -m 'FORCE_UPDATE_{v}' && git push -f https://{t1+t2}@github.com/sniperimmobilier/sniper-immo.git main")
+    os.system(f"git add . && git commit -m 'RESTRUCTURATION_FINALE_{int(time.time())}' && git push -f https://{t1+t2}@github.com/sniperimmobilier/sniper-immo.git main")
 
 def run():
     v = int(time.time())
-    html = f"""<html><head><meta charset='UTF-8'><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css?v={v}">
+    html = f"""<!DOCTYPE html><html lang="fr"><head><meta charset='UTF-8'><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-    body {{ background: #000; color: #fff; font-family: 'Helvetica', sans-serif; margin: 0; padding: 0; }}
+    body {{ background: #000; color: #fff; font-family: 'Arial', sans-serif; margin: 0; padding: 0; }}
     
-    .header-fix {{ 
+    .header-xl {{ 
         background: #000; height: 140px; display: flex; align-items: center; 
         padding: 0 20px; border-bottom: 3px solid #d4af37; position: relative;
     }}
-    .logo-side {{ display: flex; align-items: center; z-index: 10; }}
-    .s-block {{ background: #d4af37; color: #000; padding: 10px 20px; font-weight: 900; font-size: 35px; border-radius: 5px; margin-right: 12px; }}
-    .logo-txt {{ font-size: 22px; font-weight: bold; line-height: 1.1; }}
+    .logo-box {{ display: flex; align-items: center; z-index: 10; }}
+    .s-logo {{ background: #d4af37; color: #000; padding: 10px 20px; font-weight: 900; font-size: 35px; border-radius: 5px; margin-right: 15px; }}
+    .sniper-text {{ font-size: 22px; font-weight: bold; line-height: 1.1; }}
     
-    .live-contact {{ position: absolute; right: 20px; top: 50%; transform: translateY(-50%); text-align: center; }}
-    .dot {{ width: 12px; height: 12px; background: #2ecc71; border-radius: 50%; margin: 0 auto 5px; animation: pulse 1.5s infinite; }}
-    @keyframes pulse {{ 0% {{ opacity: 1; transform: scale(1); }} 50% {{ opacity: 0.4; transform: scale(1.3); }} 100% {{ opacity: 1; transform: scale(1); }} }}
+    .live-indicator {{ position: absolute; right: 20px; top: 50%; transform: translateY(-50%); text-align: center; }}
+    .dot-pulse {{ width: 14px; height: 14px; background: #2ecc71; border-radius: 50%; margin: 0 auto; box-shadow: 0 0 10px #2ecc71; animation: pulse 1.5s infinite; }}
+    @keyframes pulse {{ 0% {{ transform: scale(0.95); opacity: 1; }} 50% {{ transform: scale(1.3); opacity: 0.5; }} 100% {{ transform: scale(0.95); opacity: 1; }} }}
 
-    .hero-juridique {{ padding: 35px 20px; background: #0a0a0a; text-align: center; border-bottom: 1px solid #1a1a1a; }}
-    .hero-juridique h1 {{ color: #d4af37; font-size: 1.6rem; margin: 0 0 10px 0; text-transform: uppercase; }}
-    .hero-juridique p {{ color: #888; line-height: 1.4; font-size: 0.9rem; margin: 0; }}
+    .section-juridique {{ padding: 40px 20px; background: #0a0a0a; text-align: center; border-bottom: 1px solid #1a1a1a; }}
+    .section-juridique h1 {{ color: #d4af37; font-size: 1.6rem; text-transform: uppercase; margin-bottom: 15px; }}
+    .section-juridique p {{ color: #aaa; font-size: 0.95rem; line-height: 1.5; margin: 0 auto; max-width: 90%; }}
 
-    .action-menu {{ padding: 20px; display: flex; flex-direction: column; gap: 15px; }}
-    .btn-main {{ 
+    .menu-grid {{ padding: 25px 20px; display: flex; flex-direction: column; gap: 15px; }}
+    .btn-action {{ 
         display: flex; align-items: center; justify-content: space-between;
-        background: #111; border: 1.5px solid #d4af37; color: #fff;
-        padding: 25px 20px; text-decoration: none; border-radius: 8px;
+        background: #000; border: 2px solid #d4af37; color: #fff;
+        padding: 25px 20px; text-decoration: none; border-radius: 10px;
         font-weight: bold; font-size: 1.1rem; text-transform: uppercase;
     }}
-    .btn-main i {{ color: #d4af37; font-size: 1.5rem; }}
-    
-    .btn-pay {{ background: #d4af37; color: #000; border: none; }}
-    .btn-pay i {{ color: #000; }}
+    .btn-action i {{ color: #d4af37; font-size: 1.4rem; }}
+    .btn-gold {{ background: #d4af37; color: #000; }}
+    .btn-gold i {{ color: #000; }}
 
-    .footer {{ padding: 30px; text-align: center; font-size: 10px; color: #333; letter-spacing: 2px; }}
+    .footer-sniper {{ padding: 40px; text-align: center; color: #444; font-size: 10px; letter-spacing: 3px; }}
     </style></head><body>
 
-    <div class="header-fix">
-        <div class="logo-side">
-            <div class="s-block">S</div>
-            <div class="logo-txt">SNIPER<br><span style="font-size:14px; color:#d4af37;">IMMOBILIER</span></div>
+    <div class="header-xl">
+        <div class="logo-box">
+            <div class="s-logo">S</div>
+            <div class="sniper-text">SNIPER<br><span style="font-size:14px; color:#d4af37; letter-spacing:3px;">IMMOBILIER</span></div>
         </div>
-        <div class="live-contact">
-            <div class="dot"></div>
-            <span style="color:#2ecc71; font-size:10px; font-weight:bold;">LIVE</span>
+        <div class="live-indicator">
+            <div class="dot-pulse"></div>
+            <span style="color:#2ecc71; font-size:10px; font-weight:bold; display:block; margin-top:5px;">LIVE</span>
         </div>
     </div>
 
-    <section class="hero-juridique">
+    <section class="section-juridique">
         <h1>SÉCURITÉ JURIDIQUE</h1>
-        <p>Expertise foncière et notariale en Algérie. Tranquillité totale pour la Diaspora.</p>
+        <p>Expertise foncière et notariale en Algérie. La garantie d'un investissement serein pour la Diaspora.</p>
     </section>
 
-    <div class="action-menu">
-        <a href="https://www.lkeria.com/vente-immobilier-professionnel" class="btn-main">
+    <div class="menu-grid">
+        <a href="https://www.lkeria.com/vente-immobilier-professionnel" class="btn-action">
             <span>Immobilier Industriel</span>
             <i class="fas fa-industry"></i>
         </a>
         
-        <a href="https://www.lkeria.com/vente-villa" class="btn-main">
+        <a href="https://www.lkeria.com/vente-villa" class="btn-action">
             <span>Villas de Luxe</span>
             <i class="fas fa-gem"></i>
         </a>
 
-        <a href="https://wa.me/33634089609" class="btn-main">
+        <a href="https://wa.me/33634089609" class="btn-action">
             <span>Visite Virtuelle Live</span>
             <i class="fas fa-video"></i>
         </a>
 
-        <a href="#" class="btn-main btn-pay">
+        <a href="#" class="btn-action btn-gold">
             <span>Paiement Frais de Dossier</span>
             <i class="fas fa-credit-card"></i>
         </a>
     </div>
 
-    <div class="footer">© 2026 SNIPER IMMOBILIER</div>
+    <div class="footer-sniper">SNIPER IMMOBILIER - ALGERIA PRESTIGE</div>
     </body></html>"""
     
     with open("index.html", "w") as f: f.write(html)
     publier()
-    print(f"✅ VERSION {v} DÉPLOYÉE. VÉRIFIE TON IPHONE.")
+    print("✅ VERSION 2.0 DÉPLOYÉE. PATIENTEZ 1 MINUTE.")
 
 run()
