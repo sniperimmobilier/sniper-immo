@@ -1,76 +1,107 @@
-<html><head><meta charset='UTF-8'><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css?v=1770982116">
+<!DOCTYPE html><html lang="fr"><head><meta charset='UTF-8'><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-    body { background: #000; color: #fff; font-family: 'Helvetica', sans-serif; margin: 0; padding: 0; }
-    
-    .header-fix { 
-        background: #000; height: 140px; display: flex; align-items: center; 
-        padding: 0 20px; border-bottom: 3px solid #d4af37; position: relative;
+    :root {
+        --gold: linear-gradient(135deg, #d4af37 0%, #f2d472 50%, #b8860b 100%);
+        --dark-bg: #050505;
     }
-    .logo-side { display: flex; align-items: center; z-index: 10; }
-    .s-block { background: #d4af37; color: #000; padding: 10px 20px; font-weight: 900; font-size: 35px; border-radius: 5px; margin-right: 12px; }
-    .logo-txt { font-size: 22px; font-weight: bold; line-height: 1.1; }
+    body { background: var(--dark-bg); color: #fff; font-family: 'Inter', 'Segoe UI', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
     
-    .live-contact { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); text-align: center; }
-    .dot { width: 12px; height: 12px; background: #2ecc71; border-radius: 50%; margin: 0 auto 5px; animation: pulse 1.5s infinite; }
-    @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.3); } 100% { opacity: 1; transform: scale(1); } }
+    /* Header XL avec Reflets */
+    .header-xl { 
+        background: linear-gradient(to bottom, #111, #000); 
+        height: 150px; display: flex; align-items: center; 
+        padding: 0 20px; border-bottom: 2px solid #d4af37; position: relative;
+        box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+    }
+    .s-logo { 
+        background: var(--gold); color: #000; padding: 12px 22px; 
+        font-weight: 900; font-size: 38px; border-radius: 8px; margin-right: 15px;
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    }
+    .sniper-text { font-size: 24px; font-weight: 800; line-height: 1; letter-spacing: 1px; }
+    .sniper-text span { background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 14px; letter-spacing: 4px; font-weight: bold; }
+    
+    /* Section Juridique Stylisée */
+    .section-juridique { 
+        padding: 50px 25px; 
+        background: radial-gradient(circle at center, #111 0%, #000 100%);
+        text-align: center; border-bottom: 1px solid #222;
+    }
+    .section-juridique h1 { 
+        background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        font-size: 1.8rem; text-transform: uppercase; margin-bottom: 15px; font-weight: 900;
+    }
+    .section-juridique p { color: #999; font-size: 1rem; line-height: 1.6; font-style: italic; }
 
-    .hero-juridique { padding: 35px 20px; background: #0a0a0a; text-align: center; border-bottom: 1px solid #1a1a1a; }
-    .hero-juridique h1 { color: #d4af37; font-size: 1.6rem; margin: 0 0 10px 0; text-transform: uppercase; }
-    .hero-juridique p { color: #888; line-height: 1.4; font-size: 0.9rem; margin: 0; }
-
-    .action-menu { padding: 20px; display: flex; flex-direction: column; gap: 15px; }
-    .btn-main { 
+    /* Menu Grid avec Effet Glass */
+    .menu-grid { padding: 30px 20px; display: flex; flex-direction: column; gap: 20px; }
+    .btn-action { 
         display: flex; align-items: center; justify-content: space-between;
-        background: #111; border: 1.5px solid #d4af37; color: #fff;
-        padding: 25px 20px; text-decoration: none; border-radius: 8px;
-        font-weight: bold; font-size: 1.1rem; text-transform: uppercase;
+        background: rgba(255, 255, 255, 0.03); 
+        border: 1px solid rgba(212, 175, 55, 0.3); 
+        color: #fff; padding: 28px 25px; text-decoration: none; border-radius: 12px;
+        font-weight: 700; font-size: 1.1rem; text-transform: uppercase;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        transition: all 0.3s ease;
     }
-    .btn-main i { color: #d4af37; font-size: 1.5rem; }
+    .btn-action:active { transform: scale(0.98); border-color: #d4af37; background: rgba(212, 175, 55, 0.05); }
+    .btn-action i { color: #d4af37; font-size: 1.6rem; text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
     
-    .btn-pay { background: #d4af37; color: #000; border: none; }
-    .btn-pay i { color: #000; }
+    /* Bouton Or Plein */
+    .btn-gold { 
+        background: var(--gold); color: #000; border: none; 
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+    .btn-gold span { color: #000; font-weight: 900; }
+    .btn-gold i { color: #000; text-shadow: none; }
 
-    .footer { padding: 30px; text-align: center; font-size: 10px; color: #333; letter-spacing: 2px; }
+    .footer-sniper { padding: 50px; text-align: center; color: #444; font-size: 11px; letter-spacing: 5px; text-transform: uppercase; }
+    
+    /* Animation du point live */
+    .live-dot { width: 12px; height: 12px; background: #2ecc71; border-radius: 50%; box-shadow: 0 0 15px #2ecc71; position: relative; margin: 0 auto; }
+    .live-dot::after { content: ''; width: 24px; height: 24px; border: 2px solid #2ecc71; border-radius: 50%; position: absolute; top: -7px; left: -7px; animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
     </style></head><body>
 
-    <div class="header-fix">
-        <div class="logo-side">
-            <div class="s-block">S</div>
-            <div class="logo-txt">SNIPER<br><span style="font-size:14px; color:#d4af37;">IMMOBILIER</span></div>
+    <div class="header-xl">
+        <div style="display:flex; align-items:center;">
+            <div class="s-logo">S</div>
+            <div class="sniper-text">SNIPER<br><span>IMMOBILIER</span></div>
         </div>
-        <div class="live-contact">
-            <div class="dot"></div>
-            <span style="color:#2ecc71; font-size:10px; font-weight:bold;">LIVE</span>
+        <div style="position:absolute; right:25px; text-align:center;">
+            <div class="live-dot"></div>
+            <span style="color:#2ecc71; font-size:10px; font-weight:bold; display:block; margin-top:8px; letter-spacing:1px;">EN LIGNE</span>
         </div>
     </div>
 
-    <section class="hero-juridique">
+    <section class="section-juridique">
         <h1>SÉCURITÉ JURIDIQUE</h1>
-        <p>Expertise foncière et notariale en Algérie. Tranquillité totale pour la Diaspora.</p>
+        <p>"Votre patrimoine en Algérie mérite la plus haute protection foncière."</p>
     </section>
 
-    <div class="action-menu">
-        <a href="https://www.lkeria.com/vente-immobilier-professionnel" class="btn-main">
+    <div class="menu-grid">
+        <a href="https://www.lkeria.com/vente-immobilier-professionnel" class="btn-action">
             <span>Immobilier Industriel</span>
             <i class="fas fa-industry"></i>
         </a>
         
-        <a href="https://www.lkeria.com/vente-villa" class="btn-main">
+        <a href="https://www.lkeria.com/vente-villa" class="btn-action">
             <span>Villas de Luxe</span>
             <i class="fas fa-gem"></i>
         </a>
 
-        <a href="https://wa.me/33634089609" class="btn-main">
+        <a href="https://wa.me/33634089609" class="btn-action">
             <span>Visite Virtuelle Live</span>
             <i class="fas fa-video"></i>
         </a>
 
-        <a href="#" class="btn-main btn-pay">
+        <a href="#" class="btn-action btn-gold">
             <span>Paiement Frais de Dossier</span>
             <i class="fas fa-credit-card"></i>
         </a>
     </div>
 
-    <div class="footer">© 2026 SNIPER IMMOBILIER</div>
+    <div class="footer-sniper">SNIPER IMMOBILIER • EXCELLENCE • 2026</div>
     </body></html>
