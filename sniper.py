@@ -4,10 +4,10 @@ import os
 
 def publier():
     t1, t2 = "ghp_SF28AkaI0lTzfadzGx6t", "DeUDVnGjnR3uD1lt"
-    os.system(f"git add . && git commit -m 'Version Catalogue Carres' && git push -f https://{t1+t2}@github.com/sniperimmobilier/sniper-immo.git main")
+    os.system(f"git add . && git commit -m 'Base Originale Bouton Clignotant' && git push -f https://{t1+t2}@github.com/sniperimmobilier/sniper-immo.git main")
 
 def run():
-    print("🚀 Restauration de la version Catalogue (Carrés)...")
+    print("🚀 Restauration de la base : Logo Gauche + Bouton Clignotant...")
     r = requests.get("https://www.lkeria.com/vente-encheres-immobilier")
     soup = BeautifulSoup(r.text, "html.parser")
     offres = []
@@ -21,66 +21,81 @@ def run():
     html = f"""<html><head><meta charset='UTF-8'><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-    body {{ background: #f0f2f5; color: #1c1e21; font-family: -apple-system, sans-serif; margin: 0; padding-bottom: 80px; }}
+    body {{ background: #f4f7f6; color: #333; font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 80px; }}
     
-    /* Header avec Logo */
-    .header {{ background: #fff; padding: 15px; text-align: center; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 100; }}
-    .logo {{ font-size: 1.5rem; font-weight: 900; color: #000; margin: 0; letter-spacing: 1px; }}
-    
-    /* Bouton WhatsApp */
-    .wa-btn {{ background: #25d366; color: white; display: flex; align-items: center; justify-content: center; margin: 15px; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: bold; }}
+    /* Header : Logo à gauche */
+    .header {{ background: #fff; padding: 15px 20px; display: flex; align-items: center; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; }}
+    .logo-box {{ display: flex; align-items: center; }}
+    .logo-img {{ background: #000; color: #fff; padding: 5px 10px; border-radius: 5px; font-weight: 900; font-size: 1.2rem; margin-right: 10px; }}
+    .logo-text {{ font-weight: bold; font-size: 0.9rem; letter-spacing: 1px; color: #000; }}
 
-    /* Grille de Carrés */
-    .grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; padding: 12px; }}
-    
-    .card-square {{ background: #fff; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border: 1px solid #eee; }}
-    
-    .card-image {{ background: #333; height: 120px; display: flex; align-items: center; justify-content: center; color: #d4af37; font-size: 2rem; }}
-    
-    .card-info {{ padding: 10px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }}
-    
-    .card-info h3 {{ font-size: 0.85rem; margin: 0 0 8px 0; color: #333; line-height: 1.3; height: 3.9em; overflow: hidden; }}
-    
-    .view-btn {{ background: #000; color: #fff; text-align: center; text-decoration: none; font-size: 0.75rem; padding: 8px; border-radius: 6px; font-weight: bold; }}
+    /* Bouton WhatsApp Clignotant */
+    @keyframes pulse-green {{
+        0% {{ transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }}
+        70% {{ transform: scale(1.02); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }}
+        100% {{ transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }}
+    }}
+    .wa-btn-blink {{ 
+        background: #25d366; color: white; display: flex; align-items: center; justify-content: center; 
+        margin: 15px; padding: 15px; border-radius: 12px; text-decoration: none; font-weight: bold;
+        animation: pulse-green 2s infinite; border: none;
+    }}
 
-    /* Navigation Bas */
-    .nav-bottom {{ position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #ddd; }}
-    .nav-item {{ text-align: center; color: #65676b; text-decoration: none; font-size: 0.65rem; }}
-    .nav-item i {{ display: block; font-size: 1.3rem; margin-bottom: 3px; color: #1c1e21; }}
+    /* Liste des Villas */
+    .container {{ padding: 10px; }}
+    .villa-card {{ 
+        background: #fff; border-radius: 15px; overflow: hidden; margin-bottom: 20px; 
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid #eee;
+    }}
+    .villa-img {{ background: #222; height: 180px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 3rem; }}
+    .villa-info {{ padding: 15px; }}
+    .villa-info h3 {{ font-size: 1.1rem; margin: 0 0 10px 0; color: #1a1a1a; }}
+    .btn-details {{ 
+        display: inline-block; background: #000; color: #fff; padding: 8px 20px; 
+        border-radius: 5px; text-decoration: none; font-size: 0.8rem; font-weight: bold;
+    }}
+
+    /* Menu bas */
+    .nav-bar {{ position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 15px 0; border-top: 1px solid #eee; }}
+    .nav-item {{ color: #999; text-decoration: none; text-align: center; font-size: 0.7rem; }}
+    .nav-item i {{ display: block; font-size: 1.4rem; margin-bottom: 3px; color: #333; }}
     </style></head><body>
 
-    <div class="header">
-        <h1 class="logo">SNIPER IMMO</h1>
-    </div>
+    <header class="header">
+        <div class="logo-box">
+            <div class="logo-img">S</div>
+            <div class="logo-text">SNIPER<br><span style="color:#ef4444; font-size:0.6rem;">IMMOBILIER</span></div>
+        </div>
+    </header>
 
-    <a href="https://wa.me/213000000000" class="wa-btn">
-        <i class="fab fa-whatsapp" style="margin-right:8px;"></i> CONTACTER L'AGENCE
+    <a href="https://wa.me/213000000000" class="wa-btn-blink">
+        <i class="fab fa-whatsapp" style="margin-right:10px; font-size:1.5rem;"></i> CONTACTER L'AGENT (LIVE)
     </a>
 
-    <div class="grid">"""
+    <div class="container">"""
     
     for o in offres:
-        html += f"""<div class='card-square'>
-            <div class='card-image'><i class="fas fa-home"></i></div>
-            <div class='card-info'>
+        html += f"""<div class='villa-card'>
+            <div class='villa-img'><i class="fas fa-home"></i></div>
+            <div class='villa-info'>
                 <h3>{o['t']}</h3>
-                <a href='{o['l']}' target='_blank' class='view-btn'>DÉTAILS</a>
+                <a href='{o['l']}' target='_blank' class='btn-details'>VOIR LA FICHE TEST</a>
             </div>
         </div>"""
     
     html += """</div>
-    
-    <div class="nav-bottom">
-        <a href="#" class="nav-item"><i class="fas fa-th-large"></i>Catalogue</a>
-        <a href="#" class="nav-item"><i class="fas fa-search"></i>Filtres</a>
-        <a href="#" class="nav-item"><i class="fas fa-heart"></i>Favoris</a>
-        <a href="#" class="nav-item"><i class="fas fa-user-circle"></i>Compte</a>
-    </div>
+
+    <nav class="nav-bar">
+        <a href="#" class="nav-item"><i class="fas fa-th-list"></i>Listes</a>
+        <a href="#" class="nav-item"><i class="fas fa-star"></i>Favoris</a>
+        <a href="#" class="nav-item"><i class="fas fa-plus-circle"></i>Ajouter</a>
+        <a href="#" class="nav-item"><i class="fas fa-user"></i>Compte</a>
+    </nav>
 
     </body></html>"""
     
     with open("index.html", "w") as f: f.write(html)
     publier()
-    print("✅ VERSION CATALOGUE CARRÉ RESTAURÉE !")
+    print("✅ BASE RÉTABLIE : LOGO À GAUCHE ET BOUTON CLIGNOTANT OK.")
 
 run()
