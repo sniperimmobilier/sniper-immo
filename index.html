@@ -1,59 +1,108 @@
 <html><head><meta charset='UTF-8'><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-    body { background: #f8f9fa; color: #333; font-family: -apple-system, sans-serif; margin: 0; padding-bottom: 70px; }
-    .header { background: #fff; padding: 15px 20px; border-bottom: 1px solid #eee; display: flex; align-items: center; justify-content: space-between; }
-    .logo { font-size: 1.2rem; font-weight: bold; color: #000; margin: 0; }
-    .wa-btn { background: #25d366; color: #fff; display: flex; align-items: center; justify-content: center; margin: 15px; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9rem; }
-    .container { padding: 10px; }
-    .card { background: #fff; border-radius: 10px; padding: 15px; margin-bottom: 10px; border: 1px solid #eee; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-    .card h3 { font-size: 0.95rem; margin: 0 0 10px 0; line-height: 1.4; }
-    .card a { color: #007bff; text-decoration: none; font-size: 0.85rem; font-weight: bold; }
-    .nav-bar { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #ddd; }
-    .nav-item { color: #666; text-decoration: none; font-size: 0.7rem; text-align: center; }
-    .nav-item i { display: block; font-size: 1.2rem; margin-bottom: 2px; }
+    body { background: #000; color: #fff; font-family: 'Times New Roman', serif; margin: 0; padding-bottom: 80px; }
+    .header { background: #000; padding: 20px; display: flex; align-items: center; border-bottom: 1px solid #1a1a1a; }
+    .logo-img { height: 40px; margin-right: 15px; }
+    .logo-text { font-size: 1.2rem; font-weight: bold; color: #d4af37; letter-spacing: 1px; }
+    .hero { text-align: center; padding: 60px 20px; }
+    .hero h1 { color: #d4af37; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px; }
+    .hero p { color: #888; font-size: 0.9rem; letter-spacing: 1px; }
+    .wa-btn { background: #000; border: 1px solid #333; color: #fff; display: flex; align-items: center; justify-content: center; margin: 0 auto 40px auto; padding: 15px; border-radius: 50px; width: 85%; text-decoration: none; font-size: 0.9rem; }
+    .wa-dot { width: 10px; height: 10px; background: #2ecc71; border-radius: 50%; margin-right: 12px; box-shadow: 0 0 10px #2ecc71; }
+    .container { padding: 0 15px; display: grid; grid-template-columns: 1fr; gap: 30px; }
+    .card { background: #050505; border: 1px solid #1a1a1a; overflow: hidden; }
+    .card-img { height: 250px; background-image: url('https://raw.githubusercontent.com/sniperimmobilier/sniper-immo/main/Gemini_Generated_Image_xuez2lxuez2lxuez (1).png'); background-size: cover; background-position: center; position: relative; }
+    .card-body { padding: 25px; text-align: center; }
+    .card-body h3 { font-size: 1.4rem; color: #fff; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
+    .card-price { color: #d4af37; font-weight: bold; font-size: 1.2rem; display: block; margin-bottom: 20px; }
+    .btn-visit { display: block; border: 1px solid #d4af37; color: #fff; text-decoration: none; padding: 12px; font-size: 0.8rem; font-weight: bold; letter-spacing: 2px; }
+    .nav-bottom { position: fixed; bottom: 0; width: 100%; background: #000; display: flex; justify-content: space-around; padding: 18px 0; border-top: 1px solid #1a1a1a; }
+    .nav-item { color: #555; text-decoration: none; font-size: 0.7rem; text-align: center; }
+    .nav-item i { display: block; font-size: 1.4rem; margin-bottom: 5px; color: #d4af37; }
     </style></head><body>
-    <div class="header">
-        <h1 class="logo">SNIPER IMMOBILIER</h1>
-        <span style="font-size: 0.7rem; font-weight: bold; color: #666;">ALGÉRIE</span>
+    <header class="header">
+        <div class="logo-text">SNIPER IMMOBILIER</div>
+    </header>
+    <div class="hero">
+        <h1>BÂTISSEZ VOTRE PATRIMOINE</h1>
+        <p>Sécurité juridique & Propriétés d'exception</p>
     </div>
-    <a href="https://wa.me/213000000000" class="wa-btn">
-        <i class="fab fa-whatsapp" style="margin-right:8px;"></i> CONTACTER L'AGENCE
-    </a>
+    <a href="https://wa.me/33634089609" class="wa-btn"><span class="wa-dot"></span> Visite Live WhatsApp</a>
     <div class="container"><div class='card'>
-            <h3>Démarche (permis, certificat ...)</h3>
-            <a href='https://www.lkeria.com/demarches-immobiliere-algerie.php' target='_blank'>VOIR L'ANNONCE →</a>
+            <div class='card-img'></div>
+            <div class='card-body'>
+                <h3>Démarche (permis, certificat ...)</h3>
+                <span class='card-price'>SUR DEMANDE DZD</span>
+                <a href='https://www.lkeria.com/demarches-immobiliere-algerie.php' target='_blank' class='btn-visit'>SOLLICITER UNE VISITE LIVE</a>
+            </div>
         </div><div class='card'>
-            <h3>géomètres et experts fonciers</h3>
-            <a href='https://www.lkeria.com/Geometre-expert-foncier-Algerie.html' target='_blank'>VOIR L'ANNONCE →</a>
+            <div class='card-img'></div>
+            <div class='card-body'>
+                <h3>géomètres et experts fonciers</h3>
+                <span class='card-price'>SUR DEMANDE DZD</span>
+                <a href='https://www.lkeria.com/Geometre-expert-foncier-Algerie.html' target='_blank' class='btn-visit'>SOLLICITER UNE VISITE LIVE</a>
+            </div>
         </div><div class='card'>
-            <h3>Lisez comment activer Javascript</h3>
-            <a href='http://www.enable-javascript.com/fr/#' target='_blank'>VOIR L'ANNONCE →</a>
+            <div class='card-img'></div>
+            <div class='card-body'>
+                <h3>Lisez comment activer Javascript</h3>
+                <span class='card-price'>SUR DEMANDE DZD</span>
+                <a href='http://www.enable-javascript.com/fr/#' target='_blank' class='btn-visit'>SOLLICITER UNE VISITE LIVE</a>
+            </div>
         </div><div class='card'>
-            <h3>Location Immeuble Birkhadem</h3>
-            <a href='https://www.lkeria.com//www.lkeria.com/annonces/immobilier/Location-Immeuble-Birkhadem-Alger-93-211977-1.html' target='_blank'>VOIR L'ANNONCE →</a>
+            <div class='card-img'></div>
+            <div class='card-body'>
+                <h3>Location Immeuble Birkhadem</h3>
+                <span class='card-price'>SUR DEMANDE DZD</span>
+                <a href='https://www.lkeria.com//www.lkeria.com/annonces/immobilier/Location-Immeuble-Birkhadem-Alger-93-211977-1.html' target='_blank' class='btn-visit'>SOLLICITER UNE VISITE LIVE</a>
+            </div>
         </div><div class='card'>
-            <h3>Location Immeuble Birkhadem</h3>
-            <a href='https://www.lkeria.com//www.lkeria.com/annonces/immobilier/Location-Immeuble-Birkhadem-Alger-93-211977-1.html' target='_blank'>VOIR L'ANNONCE →</a>
+            <div class='card-img'></div>
+            <div class='card-body'>
+                <h3>Location Immeuble Birkhadem</h3>
+                <span class='card-price'>SUR DEMANDE DZD</span>
+                <a href='https://www.lkeria.com//www.lkeria.com/annonces/immobilier/Location-Immeuble-Birkhadem-Alger-93-211977-1.html' target='_blank' class='btn-visit'>SOLLICITER UNE VISITE LIVE</a>
+            </div>
         </div><div class='card'>
-            <h3>communication.lkeria@gmail.com</h3>
-            <a href='https://www.lkeria.commailto:communication.lkeria@gmail.com' target='_blank'>VOIR L'ANNONCE →</a>
+            <div class='card-img'></div>
+            <div class='card-body'>
+                <h3>communication.lkeria@gmail.com</h3>
+                <span class='card-price'>SUR DEMANDE DZD</span>
+                <a href='https://www.lkeria.commailto:communication.lkeria@gmail.com' target='_blank' class='btn-visit'>SOLLICITER UNE VISITE LIVE</a>
+            </div>
         </div><div class='card'>
-            <h3>Location appartement alger</h3>
-            <a href='https://www.lkeria.com/annonces/immobilier/location/appartement-Alger-16' target='_blank'>VOIR L'ANNONCE →</a>
+            <div class='card-img'></div>
+            <div class='card-body'>
+                <h3>Location appartement alger</h3>
+                <span class='card-price'>SUR DEMANDE DZD</span>
+                <a href='https://www.lkeria.com/annonces/immobilier/location/appartement-Alger-16' target='_blank' class='btn-visit'>SOLLICITER UNE VISITE LIVE</a>
+            </div>
         </div><div class='card'>
-            <h3>Location appartement annaba</h3>
-            <a href='https://www.lkeria.com/annonces/immobilier/location/appartement-Annaba-23' target='_blank'>VOIR L'ANNONCE →</a>
+            <div class='card-img'></div>
+            <div class='card-body'>
+                <h3>Location appartement annaba</h3>
+                <span class='card-price'>SUR DEMANDE DZD</span>
+                <a href='https://www.lkeria.com/annonces/immobilier/location/appartement-Annaba-23' target='_blank' class='btn-visit'>SOLLICITER UNE VISITE LIVE</a>
+            </div>
         </div><div class='card'>
-            <h3>Vente Promotionnel Algérie</h3>
-            <a href='https://www.lkeria.com/annonces/immobilier/promotionnel-algerie' target='_blank'>VOIR L'ANNONCE →</a>
+            <div class='card-img'></div>
+            <div class='card-body'>
+                <h3>Vente Promotionnel Algérie</h3>
+                <span class='card-price'>SUR DEMANDE DZD</span>
+                <a href='https://www.lkeria.com/annonces/immobilier/promotionnel-algerie' target='_blank' class='btn-visit'>SOLLICITER UNE VISITE LIVE</a>
+            </div>
         </div><div class='card'>
-            <h3>Location appartement vacance</h3>
-            <a href='https://www.lkeria.com/annonces/immobilier/vacances' target='_blank'>VOIR L'ANNONCE →</a>
+            <div class='card-img'></div>
+            <div class='card-body'>
+                <h3>Location appartement vacance</h3>
+                <span class='card-price'>SUR DEMANDE DZD</span>
+                <a href='https://www.lkeria.com/annonces/immobilier/vacances' target='_blank' class='btn-visit'>SOLLICITER UNE VISITE LIVE</a>
+            </div>
         </div></div>
-    <div class="nav-bar">
-        <a href="#" class="nav-item"><i class="fas fa-home"></i>Accueil</a>
-        <a href="#" class="nav-item"><i class="fas fa-search"></i>Recherche</a>
-        <a href="#" class="nav-item"><i class="fas fa-heart"></i>Favoris</a>
+    <div class="nav-bottom">
+        <a href="#" class="nav-item"><i class="fas fa-home"></i>Investir</a>
+        <a href="#" class="nav-item"><i class="fas fa-search"></i>Explorer</a>
+        <a href="#" class="nav-item"><i class="fas fa-briefcase"></i>Dossiers</a>
     </div>
     </body></html>
