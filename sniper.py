@@ -4,10 +4,10 @@ import os
 
 def publier():
     t1, t2 = "ghp_SF28AkaI0lTzfadzGx6t", "DeUDVnGjnR3uD1lt"
-    os.system(f"git add . && git commit -m 'Restauration Origine' && git push -f https://{t1+t2}@github.com/sniperimmobilier/sniper-immo.git main")
+    os.system(f"git add . && git commit -m 'Version Zero Purifiee' && git push -f https://{t1+t2}@github.com/sniperimmobilier/sniper-immo.git main")
 
 def run():
-    print("🎯 Retour à la version d'origine...")
+    print("🎯 Retour aux sources absolues...")
     r = requests.get("https://www.lkeria.com/vente-encheres-immobilier")
     soup = BeautifulSoup(r.text, "html.parser")
     offres = []
@@ -20,26 +20,26 @@ def run():
     
     html = f"""<html><head><meta charset='UTF-8'><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-    body {{ font-family: sans-serif; padding: 20px; line-height: 1.6; background-color: white; color: black; }}
-    .header {{ text-align: center; margin-bottom: 30px; }}
-    .logo {{ font-size: 2.5rem; font-weight: bold; margin: 0; }}
-    .listing {{ list-style: none; padding: 0; }}
-    .listing li {{ margin-bottom: 15px; padding: 10px; border-bottom: 1px solid #ccc; }}
-    .listing a {{ color: blue; text-decoration: none; font-weight: bold; }}
+    body {{ font-family: serif; padding: 10px; background: white; color: black; }}
+    .center {{ text-align: center; }}
+    h1 {{ margin: 0; padding: 10px; }}
+    hr {{ border: 0; border-top: 1px solid #000; margin: 20px 0; }}
+    a {{ color: #0000EE; text-decoration: underline; }}
+    .item {{ margin-bottom: 20px; }}
     </style></head><body>
-    <div class="header">
-        <h1 class="logo">SNIPER IMMO</h1>
-        <p>{len(offres)} résultats trouvés</p>
+    <div class="center">
+        <h1>SNIPER IMMO</h1>
+        <small>{len(offres)} OFFRES DISPONIBLES</small>
     </div>
-    <ul class="listing">"""
+    <hr>"""
     
-    for o in offres[:25]:
-        html += f"<li>{o['t']}<br><a href='{o['l']}' target='_blank'>Accéder à l'enchère →</a></li>"
+    for o in offres:
+        html += f"<div class='item'>{o['t']}<br><a href='{o['l']}'>Voir l'annonce</a></div>"
     
-    html += "</ul></body></html>"
+    html += "</body></html>"
     
     with open("index.html", "w") as f: f.write(html)
     publier()
-    print("✅ VERSION ORIGINALE RÉINSTALLÉE !")
+    print("✅ RETOUR A LA VERSION ZERO EFFECTUÉ.")
 
 run()
