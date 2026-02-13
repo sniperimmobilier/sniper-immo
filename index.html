@@ -1,73 +1,110 @@
 <html><head><meta charset='UTF-8'><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-    body { background: #000; color: #d4af37; font-family: 'Times New Roman', serif; margin: 0; padding-bottom: 80px; }
+    body { background: #f8f9fa; color: #333; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 80px; }
     
-    /* Header avec Logo Doré Centré */
-    .header { background: #000; padding: 30px 20px; text-align: center; border-bottom: 1px solid #d4af37; }
-    .logo { font-size: 2.5rem; font-weight: bold; color: #d4af37; margin: 0; text-transform: uppercase; letter-spacing: 5px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+    /* Header Purifié avec Logo Centré */
+    .header { background: #fff; padding: 25px 0; text-align: center; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; }
+    .logo-container { display: inline-block; }
+    .logo-text { font-size: 1.8rem; font-weight: 800; color: #000; margin: 0; letter-spacing: -1px; }
+    .logo-sub { font-size: 0.7rem; color: #ef4444; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; display: block; }
     
-    /* Bouton WhatsApp Doré */
-    .wa-float { background: #d4af37; color: #000; display: flex; align-items: center; justify-content: center; margin: 20px auto; padding: 12px; border-radius: 5px; width: 85%; text-decoration: none; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; }
+    /* Bouton WhatsApp */
+    .whatsapp-btn { background: #25d366; color: #fff; display: flex; align-items: center; justify-content: center; margin: 15px; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9rem; shadow: 0 4px 6px rgba(0,0,0,0.1); }
     
-    /* Liste des Annonces style Luxe */
-    .container { padding: 15px; }
-    .card { background: #111; border-radius: 0; padding: 20px; margin-bottom: 20px; border: 1px solid #d4af37; position: relative; }
-    .card h3 { font-size: 1rem; margin: 0 0 15px 0; color: #fff; line-height: 1.4; }
-    .btn-link { display: block; text-align: right; color: #d4af37; text-decoration: none; font-weight: bold; font-size: 0.8rem; text-transform: uppercase; border-top: 1px solid #333; padding-top: 10px; }
+    /* Liste des Offres */
+    .container { padding: 10px; }
+    .card { background: #fff; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #f0f0f0; }
+    .card h3 { font-size: 0.95rem; margin: 0 0 12px 0; color: #1a1a1a; line-height: 1.5; }
+    .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f5f5f5; padding-top: 12px; }
+    .price-tag { color: #ef4444; font-weight: bold; font-size: 0.8rem; }
+    .view-btn { color: #007bff; text-decoration: none; font-size: 0.8rem; font-weight: 600; }
     
-    /* Navigation Bas de Page Noire et Or */
-    .nav-bottom { position: fixed; bottom: 0; width: 100%; background: #000; display: flex; justify-content: space-around; padding: 15px 0; border-top: 1px solid #d4af37; }
-    .nav-item { text-align: center; color: #888; text-decoration: none; font-size: 0.7rem; }
-    .nav-item i { display: block; font-size: 1.4rem; margin-bottom: 3px; color: #d4af37; }
-    .nav-item.active { color: #fff; font-weight: bold; }
+    /* Navigation du bas */
+    .navbar { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #eee; }
+    .nav-link { text-align: center; color: #999; text-decoration: none; font-size: 0.65rem; }
+    .nav-link i { display: block; font-size: 1.3rem; margin-bottom: 4px; }
+    .nav-link.active { color: #000; }
     </style></head><body>
 
-    <div class="header">
-        <h1 class="logo">SNIPER IMMO</h1>
-    </div>
+    <header class="header">
+        <div class="logo-container">
+            <h1 class="logo-text">SNIPER</h1>
+            <span class="logo-sub">IMMOBILIER</span>
+        </div>
+    </header>
 
-    <a href="https://wa.me/213000000000" class="wa-float">
-        <i class="fab fa-whatsapp" style="margin-right:10px; font-size:1.2rem;"></i> WhatsApp Immobilier
+    <a href="https://wa.me/213000000000" class="whatsapp-btn">
+        <i class="fab fa-whatsapp" style="margin-right:8px; font-size:1.2rem;"></i> DISCUTER SUR WHATSAPP
     </a>
 
     <div class="container"><div class='card'>
             <h3>Démarche (permis, certificat ...)</h3>
-            <a href='https://www.lkeria.com/demarches-immobiliere-algerie.php' target='_blank' class='btn-link'>Consulter l'offre <i class="fas fa-arrow-right"></i></a>
+            <div class='card-footer'>
+                <span class='price-tag'>ENCHÈRE EN COURS</span>
+                <a href='https://www.lkeria.com/demarches-immobiliere-algerie.php' target='_blank' class='view-btn'>VOIR L'OFFRE <i class="fas fa-external-link-alt"></i></a>
+            </div>
         </div><div class='card'>
             <h3>géomètres et experts fonciers</h3>
-            <a href='https://www.lkeria.com/Geometre-expert-foncier-Algerie.html' target='_blank' class='btn-link'>Consulter l'offre <i class="fas fa-arrow-right"></i></a>
+            <div class='card-footer'>
+                <span class='price-tag'>ENCHÈRE EN COURS</span>
+                <a href='https://www.lkeria.com/Geometre-expert-foncier-Algerie.html' target='_blank' class='view-btn'>VOIR L'OFFRE <i class="fas fa-external-link-alt"></i></a>
+            </div>
         </div><div class='card'>
             <h3>Lisez comment activer Javascript</h3>
-            <a href='http://www.enable-javascript.com/fr/#' target='_blank' class='btn-link'>Consulter l'offre <i class="fas fa-arrow-right"></i></a>
+            <div class='card-footer'>
+                <span class='price-tag'>ENCHÈRE EN COURS</span>
+                <a href='http://www.enable-javascript.com/fr/#' target='_blank' class='view-btn'>VOIR L'OFFRE <i class="fas fa-external-link-alt"></i></a>
+            </div>
         </div><div class='card'>
             <h3>Location Immeuble Birkhadem</h3>
-            <a href='https://www.lkeria.com//www.lkeria.com/annonces/immobilier/Location-Immeuble-Birkhadem-Alger-93-211977-1.html' target='_blank' class='btn-link'>Consulter l'offre <i class="fas fa-arrow-right"></i></a>
+            <div class='card-footer'>
+                <span class='price-tag'>ENCHÈRE EN COURS</span>
+                <a href='https://www.lkeria.com//www.lkeria.com/annonces/immobilier/Location-Immeuble-Birkhadem-Alger-93-211977-1.html' target='_blank' class='view-btn'>VOIR L'OFFRE <i class="fas fa-external-link-alt"></i></a>
+            </div>
         </div><div class='card'>
             <h3>Location Immeuble Birkhadem</h3>
-            <a href='https://www.lkeria.com//www.lkeria.com/annonces/immobilier/Location-Immeuble-Birkhadem-Alger-93-211977-1.html' target='_blank' class='btn-link'>Consulter l'offre <i class="fas fa-arrow-right"></i></a>
+            <div class='card-footer'>
+                <span class='price-tag'>ENCHÈRE EN COURS</span>
+                <a href='https://www.lkeria.com//www.lkeria.com/annonces/immobilier/Location-Immeuble-Birkhadem-Alger-93-211977-1.html' target='_blank' class='view-btn'>VOIR L'OFFRE <i class="fas fa-external-link-alt"></i></a>
+            </div>
         </div><div class='card'>
             <h3>communication.lkeria@gmail.com</h3>
-            <a href='https://www.lkeria.commailto:communication.lkeria@gmail.com' target='_blank' class='btn-link'>Consulter l'offre <i class="fas fa-arrow-right"></i></a>
+            <div class='card-footer'>
+                <span class='price-tag'>ENCHÈRE EN COURS</span>
+                <a href='https://www.lkeria.commailto:communication.lkeria@gmail.com' target='_blank' class='view-btn'>VOIR L'OFFRE <i class="fas fa-external-link-alt"></i></a>
+            </div>
         </div><div class='card'>
             <h3>Location appartement alger</h3>
-            <a href='https://www.lkeria.com/annonces/immobilier/location/appartement-Alger-16' target='_blank' class='btn-link'>Consulter l'offre <i class="fas fa-arrow-right"></i></a>
+            <div class='card-footer'>
+                <span class='price-tag'>ENCHÈRE EN COURS</span>
+                <a href='https://www.lkeria.com/annonces/immobilier/location/appartement-Alger-16' target='_blank' class='view-btn'>VOIR L'OFFRE <i class="fas fa-external-link-alt"></i></a>
+            </div>
         </div><div class='card'>
             <h3>Location appartement annaba</h3>
-            <a href='https://www.lkeria.com/annonces/immobilier/location/appartement-Annaba-23' target='_blank' class='btn-link'>Consulter l'offre <i class="fas fa-arrow-right"></i></a>
+            <div class='card-footer'>
+                <span class='price-tag'>ENCHÈRE EN COURS</span>
+                <a href='https://www.lkeria.com/annonces/immobilier/location/appartement-Annaba-23' target='_blank' class='view-btn'>VOIR L'OFFRE <i class="fas fa-external-link-alt"></i></a>
+            </div>
         </div><div class='card'>
             <h3>Vente Promotionnel Algérie</h3>
-            <a href='https://www.lkeria.com/annonces/immobilier/promotionnel-algerie' target='_blank' class='btn-link'>Consulter l'offre <i class="fas fa-arrow-right"></i></a>
+            <div class='card-footer'>
+                <span class='price-tag'>ENCHÈRE EN COURS</span>
+                <a href='https://www.lkeria.com/annonces/immobilier/promotionnel-algerie' target='_blank' class='view-btn'>VOIR L'OFFRE <i class="fas fa-external-link-alt"></i></a>
+            </div>
         </div><div class='card'>
             <h3>Location appartement vacance</h3>
-            <a href='https://www.lkeria.com/annonces/immobilier/vacances' target='_blank' class='btn-link'>Consulter l'offre <i class="fas fa-arrow-right"></i></a>
+            <div class='card-footer'>
+                <span class='price-tag'>ENCHÈRE EN COURS</span>
+                <a href='https://www.lkeria.com/annonces/immobilier/vacances' target='_blank' class='view-btn'>VOIR L'OFFRE <i class="fas fa-external-link-alt"></i></a>
+            </div>
         </div></div>
     
-    <div class="nav-bottom">
-        <a href="#" class="nav-item active"><i class="fas fa-crosshairs"></i>Cibles</a>
-        <a href="#" class="nav-item"><i class="fas fa-map-marker-alt"></i>Secteurs</a>
-        <a href="#" class="nav-item"><i class="fas fa-star"></i>Favoris</a>
-        <a href="#" class="nav-item"><i class="fas fa-cog"></i>Paramètres</a>
-    </div>
+    <nav class="navbar">
+        <a href="#" class="nav-link active"><i class="fas fa-home"></i>ACCUEIL</a>
+        <a href="#" class="nav-link"><i class="fas fa-search"></i>RECHERCHE</a>
+        <a href="#" class="nav-link"><i class="fas fa-heart"></i>FAVORIS</a>
+        <a href="#" class="nav-item"><i class="fas fa-user-circle"></i>COMPTE</a>
+    </nav>
 
     </body></html>
