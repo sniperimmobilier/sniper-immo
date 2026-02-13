@@ -3,103 +3,89 @@ import time
 
 def publier():
     t1, t2 = "ghp_SF28AkaI0lTzfadzGx6t", "DeUDVnGjnR3uD1lt"
-    os.system(f"git add . && git commit -m 'Ajout Section Enchères {int(time.time())}' && git push -f https://{t1+t2}@github.com/sniperimmobilier/sniper-immo.git main")
+    v = int(time.time())
+    # On ajoute un fichier temporaire pour forcer GitHub à détecter un changement majeur
+    os.system(f"echo {v} > version.txt")
+    os.system(f"git add . && git commit -m 'HARD_PUSH_V5_{v}' && git push -f https://{t1+t2}@github.com/sniperimmobilier/sniper-immo.git main")
 
 def run():
-    html = f"""<!DOCTYPE html><html lang="fr"><head><meta charset='UTF-8'><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    v = int(time.time())
+    html = f"""<!DOCTYPE html><html lang="fr"><head><meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>SNIPER IMMOBILIER V5</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-    :root {{
-        --gold: linear-gradient(135deg, #d4af37 0%, #f2d472 50%, #b8860b 100%);
-        --dark-bg: #050505;
-    }}
-    body {{ background: var(--dark-bg); color: #fff; font-family: 'Inter', sans-serif; margin: 0; padding: 0; }}
+    :root {{ --gold: linear-gradient(135deg, #d4af37 0%, #f2d472 50%, #b8860b 100%); }}
+    body {{ background: #000; color: #fff; font-family: 'Helvetica', sans-serif; margin: 0; padding: 0; }}
     
-    .header-xl {{ 
+    .header {{ 
         background: #000; height: 150px; display: flex; align-items: center; 
         padding: 0 20px; border-bottom: 2px solid #d4af37; position: relative;
     }}
     .s-logo {{ background: var(--gold); color: #000; padding: 12px 22px; font-weight: 900; font-size: 38px; border-radius: 8px; margin-right: 15px; }}
-    .sniper-text {{ font-size: 24px; font-weight: 800; line-height: 1; }}
-    .sniper-text span {{ background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 14px; letter-spacing: 4px; font-weight: bold; }}
+    .logo-text {{ font-size: 24px; font-weight: bold; line-height: 1.1; }}
+    .logo-text span {{ background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 14px; letter-spacing: 4px; }}
+    
+    .live-box {{ position: absolute; right: 20px; text-align: center; }}
+    .dot {{ width: 12px; height: 12px; background: #2ecc71; border-radius: 50%; margin: 0 auto; box-shadow: 0 0 10px #2ecc71; animation: pulse 1.5s infinite; }}
+    @keyframes pulse {{ 0% {{ opacity: 1; }} 50% {{ opacity: 0.3; }} 100% {{ opacity: 1; }} }}
 
-    .section-juridique {{ padding: 40px 25px; text-align: center; background: #0a0a0a; border-bottom: 1px solid #1a1a1a; }}
-    .section-juridique h1 {{ background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.6rem; text-transform: uppercase; font-weight: 900; }}
+    .hero {{ padding: 35px 25px; text-align: center; background: #0a0a0a; border-bottom: 1px solid #1a1a1a; }}
+    .hero h1 {{ background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.6rem; text-transform: uppercase; }}
 
-    /* Section Enchères Spécifique */
-    .encheres-box {{ 
-        margin: 20px; padding: 25px; border: 1px dashed #d4af37; border-radius: 12px; 
-        background: rgba(212, 175, 55, 0.05); text-align: center;
-        box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
-    }}
-    .encheres-box i {{ color: #d4af37; font-size: 2rem; margin-bottom: 10px; }}
-    .encheres-box h2 {{ font-size: 1.2rem; color: #fff; text-transform: uppercase; margin: 10px 0; }}
-    .btn-enchere {{ 
-        display: inline-block; margin-top: 15px; padding: 12px 25px; 
-        background: #fff; color: #000; text-decoration: none; font-weight: 800; 
-        border-radius: 5px; font-size: 0.9rem; text-transform: uppercase;
-    }}
-
-    .menu-grid {{ padding: 10px 20px 30px; display: flex; flex-direction: column; gap: 15px; }}
-    .btn-action {{ 
+    .menu {{ padding: 20px; display: flex; flex-direction: column; gap: 12px; }}
+    .btn {{ 
         display: flex; align-items: center; justify-content: space-between;
-        background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.3); 
-        color: #fff; padding: 25px; text-decoration: none; border-radius: 12px; font-weight: 700;
+        background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.4); 
+        color: #fff; padding: 25px 20px; text-decoration: none; border-radius: 12px; 
+        font-weight: bold; text-transform: uppercase; font-size: 1rem;
     }}
-    .btn-action i {{ color: #d4af37; font-size: 1.4rem; }}
-    .btn-gold {{ background: var(--gold); color: #000; border: none; }}
+    .btn i {{ color: #d4af37; font-size: 1.4rem; }}
+    .gold-btn {{ background: var(--gold); color: #000; border: none; }}
+    .gold-btn span, .gold-btn i {{ color: #000; font-weight: 900; }}
 
-    .live-dot {{ width: 12px; height: 12px; background: #2ecc71; border-radius: 50%; box-shadow: 0 0 10px #2ecc71; animation: pulse 2s infinite; margin: 0 auto; }}
-    @keyframes pulse {{ 0% {{ opacity: 1; }} 50% {{ opacity: 0.4; }} 100% {{ opacity: 1; }} }}
+    .footer {{ padding: 40px; text-align: center; color: #333; font-size: 10px; letter-spacing: 3px; }}
     </style></head><body>
-
-    <div class="header-xl">
+    <div style="display:none">Version: {v}</div>
+    <div class="header">
         <div style="display:flex; align-items:center;">
             <div class="s-logo">S</div>
-            <div class="sniper-text">SNIPER<br><span>IMMOBILIER</span></div>
+            <div class="logo-text">SNIPER<br><span>IMMOBILIER</span></div>
         </div>
-        <div style="position:absolute; right:25px; text-align:center;">
-            <div class="live-dot"></div>
+        <div class="live-box">
+            <div class="dot"></div>
             <span style="color:#2ecc71; font-size:9px; font-weight:bold; display:block; margin-top:5px;">LIVE</span>
         </div>
     </div>
 
-    <section class="section-juridique">
+    <section class="hero">
         <h1>SÉCURITÉ JURIDIQUE</h1>
-        <p style="color:#777; font-size:0.9rem; margin:0;">Expertise et protection foncière pour la Diaspora.</p>
+        <p style="color:#666; font-size:0.9rem; margin:0;">Protection foncière exclusive Algérie.</p>
     </section>
 
-    <div class="encheres-box">
-        <i class="fas fa-gavel"></i>
-        <h2>Ventes aux Enchères</h2>
-        <p style="color:#aaa; font-size:0.85rem; margin:0;">Accédez aux saisies immobilières et opportunités judiciaires en Algérie.</p>
-        <a href="https://www.lkeria.com/vente-encheres-immobilier" class="btn-enchere shadow">Voir les enchères</a>
-    </div>
-
-    <div class="menu-grid">
-        <a href="https://www.lkeria.com/vente-immobilier-professionnel" class="btn-action">
-            <span>Immobilier Industriel</span>
-            <i class="fas fa-industry"></i>
+    <div class="menu">
+        <a href="https://www.lkeria.com/vente-immobilier-professionnel" class="btn">
+            <span>Immobilier Industriel</span><i class="fas fa-industry"></i>
         </a>
-        <a href="https://www.lkeria.com/vente-villa" class="btn-action">
-            <span>Villas de Luxe</span>
-            <i class="fas fa-gem"></i>
+        <a href="https://www.lkeria.com/vente-villa" class="btn">
+            <span>Villas de Luxe</span><i class="fas fa-gem"></i>
         </a>
-        <a href="https://wa.me/33634089609" class="btn-action">
-            <span>Visite Virtuelle Live</span>
-            <i class="fas fa-video"></i>
+        <a href="https://www.lkeria.com/vente-encheres-immobilier" class="btn">
+            <span>Ventes aux Enchères</span><i class="fas fa-gavel"></i>
         </a>
-        <a href="#" class="btn-action btn-gold">
-            <span style="color:#000; font-weight:900;">Paiement Frais de Dossier</span>
-            <i class="fas fa-credit-card" style="color:#000;"></i>
+        <a href="https://wa.me/33634089609" class="btn">
+            <span>Visite Virtuelle Live</span><i class="fas fa-video"></i>
+        </a>
+        <a href="https://wa.me/33634089609" class="btn gold-btn">
+            <span>Paiement Frais de Dossier</span><i class="fas fa-credit-card"></i>
         </a>
     </div>
 
-    <div style="text-align:center; padding:30px; color:#333; font-size:10px; letter-spacing:3px;">SNIPER IMMOBILIER</div>
+    <div class="footer">SNIPER IMMOBILIER • PRESTIGE</div>
     </body></html>"""
     
     with open("index.html", "w") as f: f.write(html)
     publier()
-    print("✅ SECTION ENCHÈRES AJOUTÉE AVEC SUCCÈS.")
+    print(f"🚀 VERSION {v} ENVOYÉE. ATTENDS 2 MINUTES.")
 
 run()
