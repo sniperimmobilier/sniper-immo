@@ -4,10 +4,10 @@ import os
 
 def publier():
     t1, t2 = "ghp_SF28AkaI0lTzfadzGx6t", "DeUDVnGjnR3uD1lt"
-    os.system(f"git add . && git commit -m 'Retour Villa Nina Clean' && git push -f https://{t1+t2}@github.com/sniperimmobilier/sniper-immo.git main")
+    os.system(f"git add . && git commit -m 'Restauration Origine' && git push -f https://{t1+t2}@github.com/sniperimmobilier/sniper-immo.git main")
 
 def run():
-    print("🎯 Restauration de la version Villa Nina...")
+    print("🎯 Retour à la version d'origine...")
     r = requests.get("https://www.lkeria.com/vente-encheres-immobilier")
     soup = BeautifulSoup(r.text, "html.parser")
     offres = []
@@ -20,28 +20,26 @@ def run():
     
     html = f"""<html><head><meta charset='UTF-8'><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-    body {{ background: #ffffff; color: #000; font-family: -apple-system, BlinkMacSystemFont, sans-serif; margin: 0; padding: 20px; }}
-    .header {{ text-align: center; margin-bottom: 40px; border-bottom: 2px solid #000; padding-bottom: 20px; }}
-    .logo {{ font-size: 3rem; font-weight: 900; letter-spacing: -2px; margin: 0; }}
-    .subtitle {{ font-size: 0.8rem; color: #666; letter-spacing: 2px; text-transform: uppercase; }}
-    .container {{ max-width: 800px; margin: 0 auto; }}
-    .item {{ border-bottom: 1px solid #eee; padding: 20px 0; display: flex; justify-content: space-between; align-items: center; }}
-    .item-title {{ font-size: 1.1rem; font-weight: 500; line-height: 1.4; max-width: 75%; }}
-    .btn {{ background: #000; color: #fff; text-decoration: none; padding: 10px 20px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }}
+    body {{ font-family: sans-serif; padding: 20px; line-height: 1.6; background-color: white; color: black; }}
+    .header {{ text-align: center; margin-bottom: 30px; }}
+    .logo {{ font-size: 2.5rem; font-weight: bold; margin: 0; }}
+    .listing {{ list-style: none; padding: 0; }}
+    .listing li {{ margin-bottom: 15px; padding: 10px; border-bottom: 1px solid #ccc; }}
+    .listing a {{ color: blue; text-decoration: none; font-weight: bold; }}
     </style></head><body>
     <div class="header">
         <h1 class="logo">SNIPER IMMO</h1>
-        <div class="subtitle">{len(offres)} ENCHÈRES DÉTECTÉES</div>
+        <p>{len(offres)} résultats trouvés</p>
     </div>
-    <div class="container">"""
+    <ul class="listing">"""
     
-    for o in offres[:20]:
-        html += f"<div class='item'><div class='item-title'>{o['t']}</div><a href='{o['l']}' target='_blank' class='btn'>DÉTAILS</a></div>"
+    for o in offres[:25]:
+        html += f"<li>{o['t']}<br><a href='{o['l']}' target='_blank'>Accéder à l'enchère →</a></li>"
     
-    html += "</div></body></html>"
+    html += "</ul></body></html>"
     
     with open("index.html", "w") as f: f.write(html)
     publier()
-    print("✅ VERSION VILLA NINA RESTAURÉE ET CENTRÉE !")
+    print("✅ VERSION ORIGINALE RÉINSTALLÉE !")
 
 run()
