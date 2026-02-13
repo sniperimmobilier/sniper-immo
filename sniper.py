@@ -5,7 +5,8 @@ import time
 
 def publier():
     t1, t2 = "ghp_SF28AkaI0lTzfadzGx6t", "DeUDVnGjnR3uD1lt"
-    os.system(f"git add . && git commit -m 'Header Alignement Gold Frame {int(time.time())}' && git push -f https://{t1+t2}@github.com/sniperimmobilier/sniper-immo.git main")
+    # Le timestamp force GitHub et ton iPhone à voir un nouveau fichier
+    os.system(f"git add . && git commit -m 'FIX_HEADER_{int(time.time())}' && git push -f https://{t1+t2}@github.com/sniperimmobilier/sniper-immo.git main")
 
 def run():
     r = requests.get("https://www.lkeria.com/vente-encheres-immobilier")
@@ -19,81 +20,67 @@ def run():
             offres.append({"t": txt, "l": link})
     
     html = f"""<html><head><meta charset='UTF-8'><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-    body {{ background: #000; color: #fff; font-family: 'Inter', sans-serif; margin: 0; padding-bottom: 80px; }}
+    body {{ background: #000; color: #fff; font-family: 'Helvetica', sans-serif; margin: 0; padding: 0; }}
     
-    /* Header Principal */
-    .header {{ 
+    /* LE HEADER QUE TU AS DEMANDÉ */
+    .header-fix {{ 
         background: #000; 
-        padding: 10px 15px; 
         display: flex; 
         align-items: center; 
         justify-content: space-between; 
-        border-bottom: 1px solid #1a1a1a;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
+        padding: 10px 15px;
+        border-bottom: 2px solid #1a1a1a;
     }}
 
-    /* Logo à gauche */
-    .logo-side {{ display: flex; align-items: center; flex-shrink: 0; }}
-    .logo-img {{ background: #d4af37; color: #000; padding: 4px 10px; border-radius: 4px; font-weight: 900; font-size: 1.2rem; margin-right: 8px; }}
-    .logo-text h1 {{ font-size: 0.8rem; color: #fff; margin: 0; letter-spacing: 1px; text-transform: uppercase; }}
-    .logo-text span {{ font-size: 0.5rem; color: #d4af37; font-weight: bold; display: block; }}
+    .logo-side {{ display: flex; align-items: center; }}
+    .s-block {{ background: #d4af37; color: #000; padding: 5px 10px; font-weight: 900; font-size: 20px; border-radius: 3px; margin-right: 8px; }}
+    .logo-txt {{ font-size: 14px; font-weight: bold; line-height: 1; }}
+    .logo-txt span {{ font-size: 9px; color: #d4af37; letter-spacing: 1px; }}
 
-    /* Cadre Doré au centre/droite, aligné au logo */
-    .nav-frame {{ 
-        border: 1px solid #d4af37; 
-        padding: 5px 12px; 
+    /* LE CADRE DORÉ ALIGNÉ */
+    .gold-frame {{ 
+        border: 1.5px solid #d4af37; 
+        padding: 6px 12px; 
         text-align: center;
-        margin-left: 10px;
+        min-width: 160px;
     }}
-    .nav-frame h2 {{ 
-        font-size: 0.65rem; 
-        margin: 0; 
-        letter-spacing: 1px; 
-        font-weight: 700;
-        text-transform: uppercase;
-    }}
-    .txt-gold {{ color: #d4af37; margin-bottom: 2px; }}
-    .txt-white {{ color: #fff; }}
+    .gold-frame div {{ font-size: 10px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; }}
+    .titre-indus {{ color: #d4af37; margin-bottom: 2px; }}
+    .titre-luxe {{ color: #ffffff; }}
 
-    /* Image de fond (Hero réduit) */
-    .hero {{ 
-        height: 35vh; 
-        background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://raw.githubusercontent.com/sniperimmobilier/sniper-immo/main/Gemini_Generated_Image_xuez2lxuez2lxuez (1).png');
-        background-size: cover; 
-        background-position: center;
+    .hero-img {{ 
+        width: 100%; height: 30vh; 
+        background: url('https://raw.githubusercontent.com/sniperimmobilier/sniper-immo/main/Gemini_Generated_Image_xuez2lxuez2lxuez (1).png') center/cover;
     }}
 
     .container {{ padding: 15px; }}
-    .card {{ background: #0a0a0a; border: 1px solid #1a1a1a; margin-bottom: 15px; border-radius: 4px; padding: 15px; }}
-    .card h3 {{ font-size: 0.9rem; margin-top: 0; line-height: 1.4; color: #eee; }}
-    .btn-action {{ display: block; background: #d4af37; color: #000; text-decoration: none; padding: 10px; text-align: center; font-weight: bold; border-radius: 2px; text-transform: uppercase; font-size: 0.75rem; }}
+    .card {{ background: #0a0a0a; border: 1px solid #222; margin-bottom: 12px; padding: 15px; border-radius: 5px; }}
+    .card h3 {{ font-size: 14px; margin: 0 0 10px 0; color: #ddd; }}
+    .btn {{ display: block; background: #d4af37; color: #000; text-align: center; padding: 10px; text-decoration: none; font-weight: bold; font-size: 12px; border-radius: 3px; }}
     </style></head><body>
 
-    <header class="header">
+    <div class="header-fix">
         <div class="logo-side">
-            <div class="logo-img">S</div>
-            <div class="logo-text"><h1>SNIPER</h1><span>IMMOBILIER</span></div>
+            <div class="s-block">S</div>
+            <div class="logo-txt">SNIPER<br><span>IMMOBILIER</span></div>
         </div>
         
-        <div class="nav-frame">
-            <h2 class="txt-gold">IMMOBILIER INDUSTRIEL</h2>
-            <h2 class="txt-white">VILLAS DE LUXE</h2>
+        <div class="gold-frame">
+            <div class="titre-indus">IMMOBILIER INDUSTRIEL</div>
+            <div class="titre-luxe">VILLAS DE LUXE</div>
         </div>
-    </header>
+    </div>
 
-    <div class="hero"></div>
+    <div class="hero-img"></div>
 
     <div class="container">"""
     
     for o in offres:
-        html += f"""<div class='card'><h3>{o['t']}</h3><a href='{o['l']}' target='_blank' class='btn-action'>Consulter</a></div>"""
+        html += f"""<div class='card'><h3>{o['t']}</h3><a href='{o['l']}' target='_blank' class='btn'>CONSULTER</a></div>"""
     
     html += """</div></body></html>"""
     with open("index.html", "w") as f: f.write(html)
     publier()
-    print("✅ Alignement Header OK : Cadre doré et titres blancs.")
+    print("✅ DESIGN FORCÉ : CADRE DORÉ ET TEXTES ALIGNÉS.")
 run()
