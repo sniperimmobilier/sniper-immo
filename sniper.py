@@ -4,10 +4,10 @@ import os
 
 def publier():
     t1, t2 = "ghp_SF28AkaI0lTzfadzGx6t", "DeUDVnGjnR3uD1lt"
-    os.system(f"git add . && git commit -m 'Version Prestige Matin Stable' && git push -f https://{t1+t2}@github.com/sniperimmobilier/sniper-immo.git main")
+    os.system(f"git add . && git commit -m 'Integration Logo et Design Prestige' && git push -f https://{t1+t2}@github.com/sniperimmobilier/sniper-immo.git main")
 
 def run():
-    print("🚀 Restauration de la version Prestige (Villa Nina)...")
+    print("💎 Finalisation du site avec le nouveau logo...")
     r = requests.get("https://www.lkeria.com/vente-encheres-immobilier")
     soup = BeautifulSoup(r.text, "html.parser")
     offres = []
@@ -21,56 +21,88 @@ def run():
     html = """<html><head><meta charset='UTF-8'><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-    body { background: #000; color: #fff; font-family: 'Times New Roman', serif; margin: 0; padding-bottom: 80px; }
-    .header { background: #000; padding: 20px; display: flex; align-items: center; border-bottom: 1px solid #1a1a1a; }
-    .logo-img { height: 40px; margin-right: 15px; }
-    .logo-text { font-size: 1.2rem; font-weight: bold; color: #d4af37; letter-spacing: 1px; }
-    .hero { text-align: center; padding: 60px 20px; }
-    .hero h1 { color: #d4af37; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px; }
-    .hero p { color: #888; font-size: 0.9rem; letter-spacing: 1px; }
-    .wa-btn { background: #000; border: 1px solid #333; color: #fff; display: flex; align-items: center; justify-content: center; margin: 0 auto 40px auto; padding: 15px; border-radius: 50px; width: 85%; text-decoration: none; font-size: 0.9rem; }
-    .wa-dot { width: 10px; height: 10px; background: #2ecc71; border-radius: 50%; margin-right: 12px; box-shadow: 0 0 10px #2ecc71; }
-    .container { padding: 0 15px; display: grid; grid-template-columns: 1fr; gap: 30px; }
-    .card { background: #050505; border: 1px solid #1a1a1a; overflow: hidden; }
-    .card-img { height: 250px; background-image: url('https://raw.githubusercontent.com/sniperimmobilier/sniper-immo/main/Gemini_Generated_Image_xuez2lxuez2lxuez (1).png'); background-size: cover; background-position: center; position: relative; }
-    .card-body { padding: 25px; text-align: center; }
-    .card-body h3 { font-size: 1.4rem; color: #fff; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
-    .card-price { color: #d4af37; font-weight: bold; font-size: 1.2rem; display: block; margin-bottom: 20px; }
-    .btn-visit { display: block; border: 1px solid #d4af37; color: #fff; text-decoration: none; padding: 12px; font-size: 0.8rem; font-weight: bold; letter-spacing: 2px; }
-    .nav-bottom { position: fixed; bottom: 0; width: 100%; background: #000; display: flex; justify-content: space-around; padding: 18px 0; border-top: 1px solid #1a1a1a; }
+    body { background: #000; color: #fff; font-family: 'Inter', sans-serif; margin: 0; padding-bottom: 80px; }
+    
+    /* Header avec ton Logo */
+    .header { background: #000; padding: 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #1a1a1a; position: sticky; top: 0; z-index: 1000; }
+    .logo-box { display: flex; align-items: center; }
+    .logo-circle { width: 45px; height: 45px; border: 2px solid #d4af37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; }
+    .logo-circle i { color: #d4af37; font-size: 1.2rem; }
+    .logo-text h1 { font-size: 1rem; color: #d4af37; margin: 0; letter-spacing: 1px; text-transform: uppercase; }
+    .logo-text span { font-size: 0.6rem; color: #888; text-transform: uppercase; letter-spacing: 2px; }
+
+    /* Boutons Header */
+    .header-nav { display: flex; gap: 15px; }
+    .header-nav a { color: #fff; text-decoration: none; font-size: 0.8rem; border: 1px solid #333; padding: 8px 15px; border-radius: 5px; }
+
+    /* Hero Villa */
+    .hero { position: relative; height: 70vh; background-image: url('https://raw.githubusercontent.com/sniperimmobilier/sniper-immo/main/Gemini_Generated_Image_xuez2lxuez2lxuez (1).png'); background-size: cover; background-position: center; display: flex; align-items: flex-end; padding: 40px 20px; }
+    .hero-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent, #000); }
+    .hero-content { position: relative; z-index: 10; max-width: 80%; }
+    .hero-content h2 { font-size: 2rem; color: #d4af37; margin-bottom: 10px; text-transform: uppercase; }
+    .wa-link { color: #2ecc71; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+
+    /* Cartes Annonces */
+    .container { padding: 20px; }
+    .card { background: #0a0a0a; border: 1px solid #1a1a1a; margin-bottom: 30px; border-radius: 5px; overflow: hidden; }
+    .card-img { height: 250px; background-color: #111; background-size: cover; position: relative; }
+    .badge { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.8); color: #d4af37; padding: 5px 10px; font-size: 0.6rem; border: 1px solid #d4af37; }
+    .card-body { padding: 20px; text-align: center; }
+    .card-body h3 { color: #fff; font-size: 1.2rem; margin-bottom: 15px; }
+    .btn-gold { display: block; border: 1px solid #d4af37; color: #d4af37; text-decoration: none; padding: 12px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
+
+    /* Nav Bas */
+    .nav-bottom { position: fixed; bottom: 0; width: 100%; background: #000; display: flex; justify-content: space-around; padding: 15px 0; border-top: 1px solid #1a1a1a; }
     .nav-item { color: #555; text-decoration: none; font-size: 0.7rem; text-align: center; }
-    .nav-item i { display: block; font-size: 1.4rem; margin-bottom: 5px; color: #d4af37; }
+    .nav-item i { display: block; font-size: 1.4rem; margin-bottom: 4px; color: #d4af37; }
     </style></head><body>
+
     <header class="header">
-        <div class="logo-text">SNIPER IMMOBILIER</div>
+        <div class="logo-box">
+            <div class="logo-circle"><i class="fas fa-crosshairs"></i></div>
+            <div class="logo-text">
+                <h1>SNIPER IMMOBILIER</h1>
+                <span>Prestige & Diaspora</span>
+            </div>
+        </div>
+        <div class="header-nav">
+            <a href="https://wa.me/33634089609" style="border-color: #d4af37; color: #d4af37;">Contact</a>
+        </div>
     </header>
+
     <div class="hero">
-        <h1>BÂTISSEZ VOTRE PATRIMOINE</h1>
-        <p>Sécurité juridique & Propriétés d'exception</p>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2>BÂTISSEZ VOTRE PATRIMOINE EN ALGÉRIE</h2>
+            <a href="https://wa.me/33634089609" class="wa-link"><i class="fab fa-whatsapp"></i> WhatsApp Direct</a>
+        </div>
     </div>
-    <a href="https://wa.me/33634089609" class="wa-btn"><span class="wa-dot"></span> Visite Live WhatsApp</a>
+
     <div class="container">"""
     
-    for o in offres[:10]:
+    for o in offres:
         html += f"""<div class='card'>
-            <div class='card-img'></div>
+            <div class='card-img' style="background-image: url('https://raw.githubusercontent.com/sniperimmobilier/sniper-immo/main/Gemini_Generated_Image_xuez2lxuez2lxuez (1).png');">
+                <div class='badge'>DOSSIER VÉRIFIÉ</div>
+            </div>
             <div class='card-body'>
                 <h3>{o['t']}</h3>
-                <span class='card-price'>SUR DEMANDE DZD</span>
-                <a href='{o['l']}' target='_blank' class='btn-visit'>SOLLICITER UNE VISITE LIVE</a>
+                <a href='{o['l']}' target='_blank' class='btn-gold'>S'INFORMER SUR CE BIEN</a>
             </div>
         </div>"""
     
     html += """</div>
+    
     <div class="nav-bottom">
         <a href="#" class="nav-item"><i class="fas fa-home"></i>Investir</a>
         <a href="#" class="nav-item"><i class="fas fa-search"></i>Explorer</a>
         <a href="#" class="nav-item"><i class="fas fa-briefcase"></i>Dossiers</a>
     </div>
+
     </body></html>"""
     
     with open("index.html", "w") as f: f.write(html)
     publier()
-    print("✅ SITE RESTAURÉ : DESIGN PRESTIGE MATIN OPÉRATIONNEL.")
+    print("✅ SITE MIS À JOUR AVEC LE LOGO ET LE DESIGN PRESTIGE !")
 
 run()
