@@ -5,7 +5,7 @@ import time
 
 def publier():
     t1, t2 = "ghp_SF28AkaI0lTzfadzGx6t", "DeUDVnGjnR3uD1lt"
-    os.system(f"git add . && git commit -m 'Add Live Status Button {int(time.time())}' && git push -f https://{t1+t2}@github.com/sniperimmobilier/sniper-immo.git main")
+    os.system(f"git add . && git commit -m 'Compact Design: Services under Header {int(time.time())}' && git push -f https://{t1+t2}@github.com/sniperimmobilier/sniper-immo.git main")
 
 def run():
     r = requests.get("https://www.lkeria.com/vente-encheres-immobilier")
@@ -23,7 +23,7 @@ def run():
     <style>
     body {{ background: #000; color: #fff; font-family: 'Helvetica', sans-serif; margin: 0; padding: 0; }}
     
-    /* Header XL avec Bouton Live */
+    /* Header XL */
     .header-fix {{ 
         background: #000; height: 140px; display: flex; align-items: center; 
         padding: 0 20px; border-bottom: 2px solid #d4af37; position: relative;
@@ -39,7 +39,7 @@ def run():
     .titre-indus {{ color: #d4af37; font-size: 16px; font-weight: 900; text-transform: uppercase; }}
     .titre-luxe {{ color: #ffffff; font-size: 16px; font-weight: 900; text-transform: uppercase; margin-top: 5px; }}
 
-    /* Bouton Live à droite */
+    /* Bouton Live */
     .live-contact {{
         position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
         display: flex; flex-direction: column; align-items: center; text-decoration: none; z-index: 20;
@@ -56,17 +56,18 @@ def run():
     }}
     .live-text {{ color: #2ecc71; font-size: 10px; font-weight: bold; text-transform: uppercase; }}
 
-    .hero-img {{ width: 100%; height: 35vh; background: url('https://raw.githubusercontent.com/sniperimmobilier/sniper-immo/main/Gemini_Generated_Image_xuez2lxuez2lxuez (1).png') center/cover; }}
-
-    .services {{ padding: 40px 20px; background: #0a0a0a; text-align: center; border-bottom: 1px solid #222; }}
-    .services h2 {{ color: #d4af37; font-size: 1.5rem; text-transform: uppercase; margin-bottom: 30px; }}
-    .service-grid {{ display: grid; grid-template-columns: 1fr; gap: 20px; }}
-    .service-item {{ border: 1px solid #333; padding: 20px; border-radius: 8px; }}
-    .service-item i {{ color: #d4af37; font-size: 2rem; margin-bottom: 15px; }}
+    /* Section Services collée au Header */
+    .services {{ padding: 30px 20px; background: #000; text-align: center; border-bottom: 1px solid #1a1a1a; }}
+    .services h2 {{ color: #d4af37; font-size: 1.3rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; }}
+    .service-grid {{ display: grid; grid-template-columns: 1fr; gap: 15px; }}
+    .service-item {{ border: 1px solid #222; padding: 15px; border-radius: 5px; background: #050505; }}
+    .service-item i {{ color: #d4af37; font-size: 1.8rem; margin-bottom: 10px; }}
+    .service-item h3 {{ font-size: 1rem; margin-bottom: 5px; color: #fff; }}
+    .service-item p {{ font-size: 0.85rem; color: #777; line-height: 1.3; margin: 0; }}
     
-    .container {{ padding: 30px 20px; }}
-    .card {{ background: #111; border-left: 4px solid #d4af37; margin-bottom: 20px; padding: 20px; }}
-    .btn {{ display: block; background: #d4af37; color: #000; text-align: center; padding: 15px; text-decoration: none; font-weight: bold; border-radius: 4px; }}
+    .container {{ padding: 25px 20px; }}
+    .card {{ background: #0a0a0a; border-left: 3px solid #d4af37; margin-bottom: 15px; padding: 15px; border-radius: 0 5px 5px 0; }}
+    .btn {{ display: block; background: #d4af37; color: #000; text-align: center; padding: 12px; text-decoration: none; font-weight: bold; border-radius: 3px; font-size: 12px; }}
     </style></head><body>
 
     <div class="header-fix">
@@ -81,31 +82,40 @@ def run():
         </div>
 
         <a href="https://wa.me/33634089609" class="live-contact">
-            <div class="dot-container">
-                <div class="pulse"></div>
-                <div class="dot"></div>
-            </div>
-            <div class="live-text">LIVE CONTACT</div>
+            <div class="dot-container"><div class="pulse"></div><div class="dot"></div></div>
+            <div class="live-text">LIVE</div>
         </a>
     </div>
-
-    <div class="hero-img"></div>
 
     <section class="services">
         <h2>NOS SERVICES VIP</h2>
         <div class="service-grid">
-            <div class="service-item"><i class="fas fa-gavel"></i><h3>SÉCURITÉ JURIDIQUE</h3><p>Accompagnement notarial complet.</p></div>
-            <div class="service-item"><i class="fas fa-industry"></i><h3>CONSEIL INDUSTRIEL</h3><p>Terrains et hangars stratégiques.</p></div>
+            <div class="service-item">
+                <i class="fas fa-gavel"></i>
+                <h3>SÉCURITÉ JURIDIQUE</h3>
+                <p>Accompagnement notarial complet pour la diaspora.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-industry"></i>
+                <h3>CONSEIL INDUSTRIEL</h3>
+                <p>Terrains et hangars stratégiques en Algérie.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-key"></i>
+                <h3>CHASSEUR IMMOBILIER</h3>
+                <p>Mandat de recherche exclusif haut standing.</p>
+            </div>
         </div>
     </section>
 
-    <div class="container">"""
+    <div class="container">
+        <h2 style="color:#d4af37; text-align:center; font-size: 1.1rem; text-transform:uppercase;">Dossiers prioritaires</h2>"""
     
     for o in offres:
-        html += f"<div class='card'><h3>{o['t']}</h3><a href='{o['l']}' target='_blank' class='btn'>CONSULTER</a></div>"
+        html += f"<div class='card'><h3>{o['t']}</h3><a href='{o['l']}' target='_blank' class='btn'>CONSULTER L'OFFRE</a></div>"
     
     html += "</div></body></html>"
     with open("index.html", "w") as f: f.write(html)
     publier()
-    print("✅ BOUTON LIVE DÉPLOYÉ AVEC SUCCÈS !")
+    print("✅ ESPACE RÉDUIT : SERVICES COLLÉS AU BANDEAU.")
 run()
