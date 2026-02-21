@@ -10,7 +10,6 @@
         :root { --dark-bg: #0f172a; --gold: #d4af37; }
         body { background-color: var(--dark-bg); color: white; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
         
-        /* Effet Drapeau Algérien en filigrane */
         .bg-flag {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_Algeria.svg');
@@ -20,7 +19,6 @@
         h1, h2 { font-family: 'Playfair Display', serif; }
         .gold-border { border: 1px solid rgba(212, 175, 55, 0.3); }
         .gold-text { color: var(--gold); }
-        .btn-prestige { background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%); color: #000; }
     </style>
 </head>
 <body>
@@ -28,7 +26,9 @@
     <div class="bg-flag"></div>
 
     <nav class="max-w-7xl mx-auto p-6 flex justify-between items-center">
-        <div class="text-2xl font-bold tracking-tighter">SNIPER <span class="gold-text italic">IMMOBILIER</span></div>
+        <div class="flex items-center">
+            <img src="logo.png" alt="Sniper Immobilier" class="h-20 w-auto">
+        </div>
         <a href="https://wa.me/33634089609" class="bg-white/5 border border-white/10 px-6 py-2 rounded-full hover:bg-white/10 transition text-sm font-medium">
             CONTACT DIRECT
         </a>
@@ -55,4 +55,16 @@
                     <span class="text-gray-500 italic font-light tracking-widest uppercase text-xs">Visuel en cours de validation</span>
                 </div>
                 <div class="p-8">
-                    <div class="flex justify-between items-center mb-4">
+                    <p class="gold-text text-sm mb-2">Alger, Hydra</p>
+                    <h3 class="text-xl mb-4">Villa Signature</h3>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400 text-sm">Prix sur demande</span>
+                        <span class="text-xs border border-white/20 px-2 py-1 rounded">Prestige</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
