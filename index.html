@@ -3,20 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sniper Immobilier | Diaspora Algérienne</title>
+    <title>Sniper Immobilier | Contact</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
-        .font-prestige { font-family: 'Playfair Display', serif; }
         
         /* Drapeau Algérien Flottant */
         .flag-container {
-            width: 50px;
-            height: 30px;
-            position: relative;
-            perspective: 800px;
-            margin: 0 auto 15px auto;
+            width: 50px; height: 30px;
+            position: relative; perspective: 800px;
+            margin: 0 auto 30px auto;
         }
         .flag {
             width: 100%; height: 100%;
@@ -24,91 +21,95 @@
             position: relative;
             animation: wave 3s ease-in-out infinite alternate;
             transform-origin: left center;
-            border-radius: 1px;
         }
         .flag::after {
             content: "☪";
-            position: absolute;
-            left: 50%; top: 50%;
+            position: absolute; left: 50%; top: 50%;
             transform: translate(-50%, -50%);
-            color: #d21034;
-            font-size: 14px;
-            line-height: 0;
+            color: #d21034; font-size: 14px; line-height: 0;
         }
         @keyframes wave {
             0% { transform: rotateY(0deg) skewY(0deg); }
             100% { transform: rotateY(15deg) skewY(2deg); }
         }
 
-        /* Bouton Contact Discret & Vivant */
-        .pulse-contact {
-            position: relative;
-            display: inline-block;
-            border: 1px solid #d4af37;
-            color: #d4af37;
-            font-weight: 600;
-            padding: 8px 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 9px;
-            transition: all 0.4s ease;
-        }
-        .pulse-contact:hover { background: #d4af37; color: #000; }
-        .pulse-contact::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            border: 1px solid #d4af37;
-            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-        }
-        @keyframes pulse-ring {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.2); opacity: 0; }
+        /* Bouton Vert Vivant */
+        .btn-alive-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 40px 0;
         }
 
-        .gold-gradient { background: linear-gradient(135deg, #d4af37 0%, #f2d472 50%, #b8860b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .btn-green-alive {
+            width: 20px;
+            height: 20px;
+            background-color: #25D366;
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Effet de pulsation vert */
+        .btn-green-alive::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #25D366;
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(3.5); opacity: 0; }
+        }
+
+        .contact-label {
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 10px;
+            color: #fff;
+            font-weight: 300;
+        }
     </style>
 </head>
 <body class="bg-black">
 
-    <nav class="flex flex-col items-center py-10 border-b border-gray-900">
-        <img src="logo.png" alt="Sniper Immobilier" class="h-24 mb-6 object-contain">
+    <nav class="flex flex-col items-center py-12">
+        <img src="logo.png" alt="Sniper Immobilier" class="h-32 mb-8 object-contain">
+        
         <div class="flag-container">
             <div class="flag"></div>
         </div>
+
+        <div class="btn-alive-container">
+            <a href="https://wa.me/33634089609" class="btn-green-alive"></a>
+            <span class="contact-label">Contact</span>
+        </div>
     </nav>
 
-    <header class="text-center py-20 px-6 bg-black">
-        <h1 class="text-3xl md:text-5xl font-prestige font-bold mb-6 uppercase tracking-tight leading-tight">
-            Spécialiste de l'investissement <br> 
-            <span class="gold-gradient text-2xl md:text-4xl">Immobilier pour la Diaspora Algérienne</span>
-        </h1>
-        <div class="w-12 h-[1px] bg-yellow-700 mx-auto mb-10"></div>
-        
-        <a href="https://wa.me/33634089609" class="pulse-contact">
-            Veille permanente — Contact
-        </a>
-    </header>
-
-    <section class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-6 mb-24">
-        <div class="border border-gray-900 p-8 text-center bg-[#050505] hover:border-yellow-600 transition-all duration-500">
-            <h3 class="uppercase tracking-widest text-[10px] mb-4 font-bold text-yellow-600">Sécurité Juridique</h3>
-            <p class="text-gray-500 text-xs font-light">Protection de vos intérêts et conformité totale des actes en Algérie.</p>
+    <section class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-6 mb-24 mt-12">
+        <div class="border border-gray-900 p-8 text-center bg-[#050505]">
+            <h3 class="uppercase tracking-widest text-[9px] mb-2 font-bold text-gray-400">Sécurité Juridique</h3>
         </div>
-
-        <div class="border border-gray-900 p-8 text-center bg-[#050505] hover:border-yellow-600 transition-all duration-500">
-            <h3 class="uppercase tracking-widest text-[10px] mb-4 font-bold text-yellow-600">Patrimoine Luxe</h3>
-            <p class="text-gray-500 text-xs font-light">Sélection rigoureuse de biens d'exception pour une clientèle exigeante.</p>
+        <div class="border border-gray-900 p-8 text-center bg-[#050505]">
+            <h3 class="uppercase tracking-widest text-[9px] mb-2 font-bold text-gray-400">Patrimoine Luxe</h3>
         </div>
-
-        <div class="border border-gray-900 p-8 text-center bg-[#050505] hover:border-yellow-600 transition-all duration-500">
-            <h3 class="uppercase tracking-widest text-[10px] mb-4 font-bold text-yellow-600">Conseil Sniper</h3>
-            <p class="text-gray-500 text-xs font-light">Analyse de marché à distance pour sécuriser votre investissement.</p>
+        <div class="border border-gray-900 p-8 text-center bg-[#050505]">
+            <h3 class="uppercase tracking-widest text-[9px] mb-2 font-bold text-gray-400">Conseil Sniper</h3>
         </div>
     </section>
 
     <footer class="py-10 text-center border-t border-gray-900">
-        <p class="text-gray-800 text-[8px] tracking-widest uppercase">© 2026 Sniper Immobilier - Bureau de Prestige</p>
+        <p class="text-gray-800 text-[8px] tracking-widest uppercase">© 2026 Sniper Immobilier</p>
     </footer>
 
 </body>
