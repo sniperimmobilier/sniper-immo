@@ -3,49 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sniper Immobilier | Prestige</title>
+    <title>Sniper Immobilier | Prestige Algérie</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Supprime définitivement les bandes blanches et force le noir */
-        html, body { 
-            background-color: #000 !important; 
-            color: #fff; 
-            margin: 0; 
-            padding: 0; 
-            min-height: 100vh; 
-            overflow-x: hidden;
-        }
+        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; }
         .font-prestige { font-family: 'Playfair Display', serif; }
-        /* Logo taille X2 (180px) */
-        .logo-img { height: 180px; width: auto; object-fit: contain; display: block; margin: 0 auto; }
+        .gold-gradient { background: linear-gradient(135deg, #d4af37 0%, #f2d472 50%, #b8860b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .logo-container { height: 180px; display: flex; justify-content: center; align-items: center; }
+        .card-prestige { border: 1px solid #1a1a1a; transition: all 0.3s ease; }
+        .card-prestige:hover { border-color: #d4af37; background: #050505; }
     </style>
-    <script>
-        /* Correction BDP : Force le retour en haut au chargement */
-        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
-        window.scrollTo(0, 0);
-    </script>
 </head>
-<body class="bg-black text-white">
-    <nav class="p-6 bg-black border-b border-gray-900">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <img src="logo.png" alt="Sniper Immobilier" class="logo-img">
-            <a href="https://wa.me/33634089609" class="border border-yellow-600 px-6 py-2 rounded text-yellow-500 hover:bg-yellow-600 hover:text-black transition uppercase text-[10px] tracking-widest font-bold">Contact Direct</a>
-        </div>
-    </nav>
+<body>
 
-    <header class="text-center py-20 px-4 bg-black">
-        <h1 class="text-5xl md:text-7xl font-prestige font-bold mb-8 uppercase tracking-tight">
-            Bâtissez votre <br> <span class="text-[#d4af37]">Patrimoine en Algérie</span>
-        </h1>
-        <p class="text-gray-500 text-[10px] uppercase tracking-[0.5em] mb-12">Sécurité juridique • Excellence • Discrétion</p>
-        <div class="w-24 h-1 bg-yellow-700 mx-auto"></div>
+    <header class="py-10 bg-black text-center">
+        <div class="logo-container">
+            <img src="logo.png" alt="Sniper Immobilier" class="h-full object-contain">
+        </div>
+        
+        <div class="flex justify-center items-center gap-2 mt-4">
+            <div class="w-6 h-4 bg-[#006233]"></div><div class="w-6 h-4 bg-white flex justify-center items-center font-bold text-[8px] text-red-600">★</div><div class="w-6 h-4 bg-white"></div>
+            <span class="text-[10px] tracking-[0.3em] uppercase text-gray-400 ml-2">Expertise Algérie</span>
+        </div>
     </header>
 
-    <main id="annonces-list" class="max-w-7xl mx-auto px-6 py-12 bg-black">
-        <div class="text-center border border-gray-800 p-20 rounded-lg">
-            <p class="text-gray-600 italic font-light">Le catalogue de nos propriétés d'exception est en cours de préparation.</p>
+    <section class="text-center px-4 mb-20">
+        <h1 class="text-4xl md:text-6xl font-prestige mb-6">L'EXCELLENCE <br> <span class="gold-gradient">IMMOBILIÈRE</span></h1>
+        <div class="w-16 h-[1px] bg-yellow-600 mx-auto mb-10"></div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+        <div class="card-prestige p-8 text-center rounded-sm">
+            <div class="text-[#d4af37] text-2xl mb-4 font-prestige">01</div>
+            <h3 class="uppercase tracking-widest text-sm mb-4 font-bold">Sécurité Juridique</h3>
+            <p class="text-gray-500 text-xs leading-relaxed">Accompagnement total pour vos transactions en Algérie avec discrétion absolue.</p>
         </div>
-    </main>
+
+        <div class="card-prestige p-8 text-center rounded-sm">
+            <div class="text-[#d4af37] text-2xl mb-4 font-prestige">02</div>
+            <h3 class="uppercase tracking-widest text-sm mb-4 font-bold">Patrimoine Luxe</h3>
+            <p class="text-gray-500 text-xs leading-relaxed">Accès exclusif aux villas et appartements les plus prestigieux du marché.</p>
+        </div>
+
+        <div class="card-prestige p-8 text-center rounded-sm">
+            <div class="text-[#d4af37] text-2xl mb-4 font-prestige">03</div>
+            <h3 class="uppercase tracking-widest text-sm mb-4 font-bold">Conseil Sniper</h3>
+            <p class="text-gray-500 text-xs leading-relaxed">Une analyse précise pour un investissement sécurisé et performant.</p>
+        </div>
+    </section>
+
+    <div class="text-center py-20">
+        <a href="https://wa.me/33634089609" class="inline-block border border-yellow-600 px-12 py-4 text-xs tracking-[0.4em] uppercase hover:bg-[#d4af37] hover:text-black transition duration-500">
+            Prendre Contact
+        </a>
+    </div>
+
 </body>
 </html>
