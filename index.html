@@ -3,138 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sniper Immobilier | Business Center</title>
+    <title>SNIPER IMMOBILIER | High-Level Business</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;700&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; }
-        .hero-gradient { background: radial-gradient(circle at center, #111 0%, #000 100%); }
-        .gold-line { background: linear-gradient(90deg, transparent, #d4af37, transparent); }
+        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
+        .hero-bg { background: radial-gradient(circle at 50% 50%, #151515 0%, #000 100%); }
         
-        /* Cartes parfaitement uniformes */
-        .card-pro { 
-            background: rgba(10, 10, 10, 0.8);
-            border: 1px solid #1a1a1a;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 250px;
+        /* Navigation & Langue - Position Fixe & Invariable */
+        .top-nav { height: 80px; display: flex; align-items: center; padding: 0 40px; border-bottom: 1px solid rgba(255,255,255,0.03); position: relative; }
+        .lang-box { 
+            position: absolute; right: 40px; top: 25px; 
+            background: #d4af37; padding: 5px 15px; border-radius: 0px; 
+            z-index: 1000; transition: all 0.3s;
         }
-        .card-pro:hover { 
-            border-color: #d4af37;
-            transform: translateY(-8px);
-            background: rgba(20, 20, 20, 1);
-        }
+        select.lang-select { background: transparent; color: #000; font-size: 11px; font-weight: 700; border: none; outline: none; cursor: pointer; text-transform: uppercase; }
 
-        /* Sélecteur de langue Ultra-Visible */
-        .lang-container {
-            position: relative;
-            z-index: 100;
-            background: #d4af37; /* Fond doré pour qu'il saute aux yeux */
-            padding: 2px 10px;
-            border-radius: 2px;
-        }
-        select.lang-select {
-            background: transparent;
-            color: #000; /* Texte noir sur fond doré */
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border: none;
-            outline: none;
-            cursor: pointer;
-        }
+        /* Logo : Impact Massif */
+        .logo-wrap { padding: 80px 0 60px 0; text-align: center; }
+        .logo-main { width: 450px !important; max-width: 90vw; height: auto; filter: drop-shadow(0 0 15px rgba(212,175,55,0.1)); }
 
-        /* Logo Hyper-Zoomé */
-        .logo-zoom {
-            transform: scale(1.6); /* Zoom puissant */
-            max-width: 100%;
+        /* Pavés : Uniformité Chirurgicale */
+        .business-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: 0 40px 100px 40px; }
+        .sector-card { 
+            background: #050505; border: 1px solid #151515; height: 320px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1); text-decoration: none;
+        }
+        .sector-card:hover { border-color: #d4af37; background: #080808; transform: translateY(-10px); }
+        
+        /* Typographie : Égalité Absolue */
+        .title-h2 { font-weight: 200; font-size: 1.4rem; letter-spacing: 8px; text-transform: uppercase; color: #fff; margin: 0; }
+        .title-gold { color: #d4af37; } /* Pour Enchères, mais même poids 200 */
+        
+        .line-sep { width: 40px; height: 1px; background: #333; margin: 25px 0; transition: width 0.5s; }
+        .sector-card:hover .line-sep { width: 80px; background: #d4af37; }
+        
+        .desc-p { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: #444; }
+
+        @media (max-width: 768px) {
+            .business-grid { grid-template-columns: 1fr; }
+            .logo-main { width: 300px !important; }
         }
     </style>
 </head>
-<body class="hero-gradient min-h-screen flex flex-col">
+<body class="hero-bg min-h-screen">
 
-    <nav class="flex justify-between items-center px-8 py-6 border-b border-white/5">
-        <div class="text-[9px] tracking-[5px] uppercase text-zinc-500">Sniper Immobilier</div>
-
-        <div class="lang-container">
-            <select class="lang-select" onchange="changeLanguage(this.value)">
-                <option value="fr">1. FR</option>
-                <option value="ar">2. AR</option>
-                <option value="en">3. EN</option>
+    <nav class="top-nav">
+        <div class="text-[10px] tracking-[6px] uppercase text-zinc-600 font-light">Sniper Immobilier Corporate</div>
+        <div class="lang-box">
+            <select class="lang-select" onchange="switchLang(this.value)">
+                <option value="fr">1. Français</option>
+                <option value="ar">2. العربية</option>
+                <option value="en">3. English</option>
             </select>
         </div>
     </nav>
 
-    <main class="flex-grow flex flex-col items-center justify-center px-6 py-20">
-        <div class="mb-32 text-center">
-            <img src="logo.png" alt="Sniper Immobilier" class="logo-zoom w-48 md:w-64 mx-auto mb-16">
-            <div class="gold-line h-[1px] w-64 mx-auto"></div>
-        </div>
+    <div class="logo-wrap">
+        <img src="logo.png" alt="SNIPER IMMOBILIER" class="logo-main">
+    </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
-            <a href="villas.html" class="card-pro p-10 group text-center">
-                <h2 id="txt-villas" class="text-xl font-light tracking-[6px] uppercase group-hover:text-[#d4af37] transition-colors">Villas</h2>
-                <div class="w-8 h-[1px] bg-zinc-800 mx-auto mt-4"></div>
-                <p id="sub-villas" class="text-zinc-600 text-[9px] mt-6 leading-relaxed tracking-[3px] uppercase">Haut Standing</p>
-            </a>
-
-            <a href="industriel.html" class="card-pro p-10 group text-center">
-                <h2 id="txt-indus" class="text-xl font-light tracking-[6px] uppercase group-hover:text-[#d4af37] transition-colors">Industriel</h2>
-                <div class="w-8 h-[1px] bg-zinc-800 mx-auto mt-4"></div>
-                <p id="sub-indus" class="text-zinc-600 text-[9px] mt-6 leading-relaxed tracking-[3px] uppercase">Business & Immo</p>
-            </a>
-
-            <a href="encheres.html" class="card-pro p-10 group text-center border-[#d4af37]/20 bg-[#d4af37]/5">
-                <h2 id="txt-auc" class="text-xl font-light tracking-[6px] uppercase group-hover:text-[#d4af37] transition-colors">Enchères</h2>
-                <div class="w-8 h-[1px] bg-[#d4af37]/40 mx-auto mt-4"></div>
-                <p id="sub-auc" class="text-zinc-500 text-[9px] mt-6 leading-relaxed tracking-[3px] uppercase">Accès Abonnés</p>
-            </a>
-        </div>
-    </main>
-
-    <footer class="p-12 text-center">
-        <a id="btn-expert" href="https://wa.me/33634089609" class="inline-block py-4 px-10 border border-zinc-800 hover:border-[#d4af37] text-[10px] tracking-[5px] uppercase transition-all">
-            Lancer une expertise
+    <main class="business-grid">
+        <a href="villas.html" class="sector-card group">
+            <h2 id="l-villas" class="title-h2">Villas</h2>
+            <div class="line-sep"></div>
+            <p id="s-villas" class="desc-p">Prestige Residentiel</p>
         </a>
-    </footer>
-
-    <script>
-        function changeLanguage(lang) {
-            const content = {
-                fr: {
-                    villas: "Villas", sub_villas: "Haut Standing",
-                    indus: "Industriel", sub_indus: "Business & Immo",
-                    auc: "Enchères", sub_auc: "Accès Abonnés",
-                    expert: "Lancer une expertise"
-                },
-                en: {
-                    villas: "Villas", sub_villas: "Luxury Assets",
-                    indus: "Industrial", sub_indus: "Business & Pro",
-                    auc: "Auctions", sub_auc: "Member Access",
-                    expert: "Start Consultation"
-                },
-                ar: {
-                    villas: "فيلات", sub_villas: "عقارات فاخرة",
-                    indus: "صناعي", sub_indus: "أعمال وعقارات",
-                    auc: "مزادات", sub_auc: "دخول المشتركين",
-                    expert: "طلب استشارة"
-                }
-            };
-            
-            document.getElementById('txt-villas').innerText = content[lang].villas;
-            document.getElementById('sub-villas').innerText = content[lang].sub_villas;
-            document.getElementById('txt-indus').innerText = content[lang].indus;
-            document.getElementById('sub-indus').innerText = content[lang].sub_indus;
-            document.getElementById('txt-auc').innerText = content[lang].auc;
-            document.getElementById('sub-auc').innerText = content[lang].sub_auc;
-            document.getElementById('btn-expert').innerText = content[lang].expert;
-
-            document.body.style.direction = (lang === 'ar') ? 'rtl' : 'ltr';
-        }
-    </script>
-</body>
-</html>
