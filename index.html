@@ -3,70 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNIPER IMMOBILIER | High-Level Business</title>
+    <title>SNIPER IMMOBILIER</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;700&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
-        .hero-bg { background: radial-gradient(circle at 50% 50%, #151515 0%, #000 100%); }
+        /* Reset complet pour éviter tout zoom global indésirable */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; width: 100%; }
         
-        /* Navigation & Langue - Position Fixe & Invariable */
-        .top-nav { height: 80px; display: flex; align-items: center; padding: 0 40px; border-bottom: 1px solid rgba(255,255,255,0.03); position: relative; }
-        .lang-box { 
-            position: absolute; right: 40px; top: 25px; 
-            background: #d4af37; padding: 5px 15px; border-radius: 0px; 
-            z-index: 1000; transition: all 0.3s;
-        }
+        .hero-bg { background: radial-gradient(circle at 50% 50%, #111 0%, #000 100%); min-height: 100vh; }
+
+        /* Navigation fixe à droite pour la langue */
+        .top-nav { height: 80px; display: flex; align-items: center; justify-content: flex-end; padding: 0 40px; position: relative; z-index: 100; }
+        .lang-box { background: #d4af37; padding: 6px 15px; }
         select.lang-select { background: transparent; color: #000; font-size: 11px; font-weight: 700; border: none; outline: none; cursor: pointer; text-transform: uppercase; }
 
-        /* Logo : Impact Massif */
-        .logo-wrap { padding: 80px 0 60px 0; text-align: center; }
-        .logo-main { width: 450px !important; max-width: 90vw; height: auto; filter: drop-shadow(0 0 15px rgba(212,175,55,0.1)); }
-
-        /* Pavés : Uniformité Chirurgicale */
-        .business-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: 0 40px 100px 40px; }
-        .sector-card { 
-            background: #050505; border: 1px solid #151515; height: 320px;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1); text-decoration: none;
+        /* LOGO : Zoomé à 100% de sa netteté, sans zoomer le site */
+        .logo-section { width: 100%; display: flex; justify-content: center; padding: 60px 0; }
+        .logo-main { 
+            width: 550px !important; /* Taille massive forcée */
+            max-width: 90vw; 
+            height: auto; 
+            display: block;
+            /* On s'assure qu'aucun filtre ou scale global ne touche le reste */
         }
-        .sector-card:hover { border-color: #d4af37; background: #080808; transform: translateY(-10px); }
+
+        /* Grille Business */
+        .business-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: 40px; }
+        .sector-card { 
+            background: #050505; border: 1px solid #151515; height: 300px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: all 0.4s ease; text-decoration: none;
+        }
+        .sector-card:hover { border-color: #d4af37; background: #080808; }
         
-        /* Typographie : Égalité Absolue */
-        .title-h2 { font-weight: 200; font-size: 1.4rem; letter-spacing: 8px; text-transform: uppercase; color: #fff; margin: 0; }
-        .title-gold { color: #d4af37; } /* Pour Enchères, mais même poids 200 */
-        
-        .line-sep { width: 40px; height: 1px; background: #333; margin: 25px 0; transition: width 0.5s; }
-        .sector-card:hover .line-sep { width: 80px; background: #d4af37; }
-        
-        .desc-p { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: #444; }
+        /* Typographie UNIFORME */
+        .title-h2 { font-weight: 200; font-size: 1.3rem; letter-spacing: 7px; text-transform: uppercase; color: #fff; }
+        .title-gold { color: #d4af37; }
+        .desc-p { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: #444; margin-top: 20px; }
 
         @media (max-width: 768px) {
             .business-grid { grid-template-columns: 1fr; }
-            .logo-main { width: 300px !important; }
+            .logo-main { width: 320px !important; }
         }
     </style>
 </head>
-<body class="hero-bg min-h-screen">
+<body class="hero-bg">
 
     <nav class="top-nav">
-        <div class="text-[10px] tracking-[6px] uppercase text-zinc-600 font-light">Sniper Immobilier Corporate</div>
         <div class="lang-box">
             <select class="lang-select" onchange="switchLang(this.value)">
-                <option value="fr">1. Français</option>
-                <option value="ar">2. العربية</option>
-                <option value="en">3. English</option>
+                <option value="fr">1. FR</option>
+                <option value="ar">2. AR</option>
+                <option value="en">3. EN</option>
             </select>
         </div>
     </nav>
 
-    <div class="logo-wrap">
+    <div class="logo-section">
         <img src="logo.png" alt="SNIPER IMMOBILIER" class="logo-main">
     </div>
 
     <main class="business-grid">
-        <a href="villas.html" class="sector-card group">
+        <a href="villas.html" class="sector-card">
             <h2 id="l-villas" class="title-h2">Villas</h2>
-            <div class="line-sep"></div>
-            <p id="s-villas" class="desc-p">Prestige Residentiel</p>
+            <p id="s-villas" class="desc-p">Prestige</p>
         </a>
+
+        <a href="industriel.html" class="sector-card">
+            <h2 id="l-indus" class="title-h2">Industriel</h2>
+            <p id="s-indus" class="desc-p">Business</p>
+        </a>
+
+        <a href="encheres.html" class="sector-card" style="border-color: rgba(212,175,55,0.1)">
+            <h2 id="l-auc" class="title-h2 title-gold">Enchères</h2>
+            <p id="s-auc" class="desc-p">Privilège</p>
+        </a>
+    </main>
+
+    <footer class="py-10 text-center">
+        <a id="l-btn" href="https://wa.me/33634089609" class="inline-block py-4 px-12 border border-zinc-800 text-[10px] tracking-[5px] uppercase hover:border
