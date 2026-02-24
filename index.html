@@ -2,53 +2,50 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SNIPER IMMOBILIER</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400&display=swap" rel="stylesheet">
     <style>
-        /* Reset complet pour éviter tout zoom global indésirable */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; width: 100%; }
         
-        .hero-bg { background: radial-gradient(circle at 50% 50%, #111 0%, #000 100%); min-height: 100vh; }
-
-        /* Navigation fixe à droite pour la langue */
-        .top-nav { height: 80px; display: flex; align-items: center; justify-content: flex-end; padding: 0 40px; position: relative; z-index: 100; }
-        .lang-box { background: #d4af37; padding: 6px 15px; }
+        /* Menu Langue Verrouillé */
+        .top-nav { height: 80px; display: flex; align-items: center; justify-content: flex-end; padding: 0 40px; position: relative; z-index: 1000; }
+        .lang-box { background: #d4af37; padding: 6px 15px; border-radius: 2px; position: fixed; right: 40px; top: 20px; }
         select.lang-select { background: transparent; color: #000; font-size: 11px; font-weight: 700; border: none; outline: none; cursor: pointer; text-transform: uppercase; }
 
-        /* LOGO : Zoomé à 100% de sa netteté, sans zoomer le site */
-        .logo-section { width: 100%; display: flex; justify-content: center; padding: 60px 0; }
+        /* LOGO : On augmente la taille de l'image elle-même, PAS du site */
+        .logo-section { width: 100%; display: flex; justify-content: center; padding: 40px 0 20px 0; }
         .logo-main { 
-            width: 550px !important; /* Taille massive forcée */
-            max-width: 90vw; 
+            width: 600px !important; /* Taille massive pour effacer toute distraction */
+            max-width: 95vw; 
             height: auto; 
-            display: block;
-            /* On s'assure qu'aucun filtre ou scale global ne touche le reste */
+            object-fit: contain;
         }
 
-        /* Grille Business */
-        .business-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: 40px; }
+        /* Grille Business : Symétrie Totale */
+        .business-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 20px 40px; }
         .sector-card { 
-            background: #050505; border: 1px solid #151515; height: 300px;
+            background: #080808; border: 1px solid #1a1a1a; height: 280px;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: all 0.4s ease; text-decoration: none;
+            transition: all 0.3s ease; text-decoration: none;
         }
-        .sector-card:hover { border-color: #d4af37; background: #080808; }
+        .sector-card:hover { border-color: #d4af37; background: #0c0c0c; }
         
-        /* Typographie UNIFORME */
-        .title-h2 { font-weight: 200; font-size: 1.3rem; letter-spacing: 7px; text-transform: uppercase; color: #fff; }
-        .title-gold { color: #d4af37; }
-        .desc-p { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: #444; margin-top: 20px; }
+        /* Police Unifiée : font-weight 200 partout */
+        .title-h2 { font-weight: 200 !important; font-size: 1.4rem; letter-spacing: 8px; text-transform: uppercase; color: #fff; text-align: center; }
+        .title-gold { color: #d4af37 !important; }
+        .desc-p { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: #555; margin-top: 15px; text-align: center; }
 
         @media (max-width: 768px) {
-            .business-grid { grid-template-columns: 1fr; }
-            .logo-main { width: 320px !important; }
+            .business-grid { grid-template-columns: 1fr; gap: 15px; }
+            .logo-main { width: 350px !important; }
+            .sector-card { height: 200px; }
         }
     </style>
 </head>
-<body class="hero-bg">
+<body class="bg-black">
 
     <nav class="top-nav">
         <div class="lang-box">
@@ -75,11 +72,34 @@
             <p id="s-indus" class="desc-p">Business</p>
         </a>
 
-        <a href="encheres.html" class="sector-card" style="border-color: rgba(212,175,55,0.1)">
+        <a href="encheres.html" class="sector-card">
             <h2 id="l-auc" class="title-h2 title-gold">Enchères</h2>
             <p id="s-auc" class="desc-p">Privilège</p>
         </a>
     </main>
 
-    <footer class="py-10 text-center">
-        <a id="l-btn" href="https://wa.me/33634089609" class="inline-block py-4 px-12 border border-zinc-800 text-[10px] tracking-[5px] uppercase hover:border
+    <footer class="py-12 text-center">
+        <a id="l-btn" href="https://wa.me/33634089609" class="inline-block py-4 px-12 border border-zinc-800 text-[10px] tracking-[6px] uppercase hover:border-[#d4af37] transition-all">
+            Contact Direct
+        </a>
+    </footer>
+
+    <script>
+        function switchLang(lang) {
+            const data = {
+                fr: { v:"Villas", sv:"Prestige", i:"Industriel", si:"Business", a:"Enchères", sa:"Privilège", b:"Contact Direct" },
+                en: { v:"Villas", sv:"Prestige", i:"Industrial", si:"Business", a:"Auctions", sa:"Privileged", b:"Direct Contact" },
+                ar: { v:"فيلات", sv:"فخامة", i:"صناعي", si:"أعمال", a:"مزادات", sa:"امتياز", b:"اتصال مباشر" }
+            };
+            document.getElementById('l-villas').innerText = data[lang].v;
+            document.getElementById('s-villas').innerText = data[lang].sv;
+            document.getElementById('l-indus').innerText = data[lang].i;
+            document.getElementById('s-indus').innerText = data[lang].si;
+            document.getElementById('l-auc').innerText = data[lang].a;
+            document.getElementById('s-auc').innerText = data[lang].sa;
+            document.getElementById('l-btn').innerText = data[lang].b;
+            document.body.style.direction = (lang === 'ar') ? 'rtl' : 'ltr';
+        }
+    </script>
+</body>
+</html>
