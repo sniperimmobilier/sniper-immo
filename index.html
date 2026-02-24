@@ -21,16 +21,39 @@
             background: rgba(20, 20, 20, 1);
         }
         .flag-mini { width: 24px; height: 16px; border-radius: 2px; overflow: hidden; display: flex; }
+        /* Style du sélecteur de langue */
+        .lang-select {
+            background: transparent;
+            color: #555;
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .lang-select:hover { color: #d4af37; }
     </style>
 </head>
 <body class="hero-gradient min-h-screen flex flex-col">
 
     <nav class="flex justify-between items-center px-8 py-6 border-b border-white/5">
-        <div class="flag-mini">
-            <div class="bg-[#006233] w-1/2"></div>
-            <div class="bg-white w-1/2 relative"><span class="absolute left-[-4px] top-[2px] text-[8px] text-red-600">☪</span></div>
+        <div class="flex items-center gap-4">
+            <div class="flag-mini">
+                <div class="bg-[#006233] w-1/2"></div>
+                <div class="bg-white w-1/2 relative"><span class="absolute left-[-4px] top-[2px] text-[8px] text-red-600">☪</span></div>
+            </div>
+            <div class="text-[9px] tracking-[5px] uppercase text-zinc-500 hidden md:block">Algeria Strategy Bureau</div>
         </div>
-        <div class="text-[9px] tracking-[5px] uppercase text-zinc-500">Algeria Strategy Bureau</div>
+
+        <div class="flex gap-4 items-center">
+            <select class="lang-select" onchange="changeLanguage(this.value)">
+                <option value="fr">1. Français</option>
+                <option value="ar">2. العربية</option>
+                <option value="en">3. English</option>
+            </select>
+        </div>
     </nav>
 
     <main class="flex-grow flex flex-col items-center justify-center px-6">
@@ -42,29 +65,64 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl w-full">
             <a href="villas.html" class="card-pro p-10 group">
                 <span class="text-[#d4af37] text-[10px] tracking-[4px] uppercase mb-4 block opacity-50">Secteur 01</span>
-                <h2 class="text-xl font-light tracking-[4px] uppercase group-hover:text-[#d4af37] transition-colors">Villas</h2>
-                <p class="text-zinc-600 text-[9px] mt-4 leading-relaxed tracking-[2px]">RÉSIDENTIEL DE LUXE & HAUT STANDING</p>
+                <h2 id="txt-villas" class="text-xl font-light tracking-[4px] uppercase group-hover:text-[#d4af37] transition-colors">Villas</h2>
+                <p id="sub-villas" class="text-zinc-600 text-[9px] mt-4 leading-relaxed tracking-[2px]">RÉSIDENTIEL DE LUXE & HAUT STANDING</p>
             </a>
 
             <a href="industriel.html" class="card-pro p-10 group">
                 <span class="text-[#d4af37] text-[10px] tracking-[4px] uppercase mb-4 block opacity-50">Secteur 02</span>
-                <h2 class="text-xl font-light tracking-[4px] uppercase group-hover:text-[#d4af37] transition-colors">Industriel</h2>
-                <p class="text-zinc-600 text-[9px] mt-4 leading-relaxed tracking-[2px]">ENTREPÔTS • USINES • INVESTISSEMENTS</p>
+                <h2 id="txt-indus" class="text-xl font-light tracking-[4px] uppercase group-hover:text-[#d4af37] transition-colors">Industriel</h2>
+                <p id="sub-indus" class="text-zinc-600 text-[9px] mt-4 leading-relaxed tracking-[2px]">ENTREPÔTS • USINES • INVESTISSEMENTS</p>
             </a>
 
             <a href="encheres.html" class="card-pro p-10 border-[#d4af37]/30 bg-[#d4af37]/5 group">
                 <span class="text-[#d4af37] text-[10px] tracking-[4px] uppercase mb-4 block">Section Privée</span>
-                <h2 class="text-xl font-bold tracking-[4px] uppercase text-[#d4af37]">Enchères</h2>
-                <p class="text-zinc-400 text-[9px] mt-4 leading-relaxed tracking-[2px]">ACCÈS EXCLUSIF SNIPER IMMO</p>
+                <h2 id="txt-auc" class="text-xl font-bold tracking-[4px] uppercase text-[#d4af37]">Enchères</h2>
+                <p id="sub-auc" class="text-zinc-400 text-[9px] mt-4 leading-relaxed tracking-[2px]">ACCÈS EXCLUSIF SNIPER IMMO</p>
             </a>
         </div>
     </main>
 
     <footer class="p-12 text-center">
-        <a href="https://wa.me/33634089609" class="inline-block py-4 px-10 border border-zinc-800 hover:border-[#d4af37] text-[10px] tracking-[5px] uppercase transition-all">
+        <a id="btn-expert" href="https://wa.me/33634089609" class="inline-block py-4 px-10 border border-zinc-800 hover:border-[#d4af37] text-[10px] tracking-[5px] uppercase transition-all">
             Lancer une expertise
         </a>
     </footer>
 
+    <script>
+        function changeLanguage(lang) {
+            const content = {
+                fr: {
+                    villas: "Villas", sub_villas: "RÉSIDENTIEL DE LUXE & HAUT STANDING",
+                    indus: "Industriel", sub_indus: "ENTREPÔTS • USINES • INVESTISSEMENTS",
+                    auc: "Enchères", sub_auc: "ACCÈS EXCLUSIF SNIPER IMMO",
+                    expert: "Lancer une expertise"
+                },
+                en: {
+                    villas: "Villas", sub_villas: "LUXURY RESIDENTIAL & HIGH STANDING",
+                    indus: "Industrial", sub_indus: "WAREHOUSES • FACTORIES • INVESTMENTS",
+                    auc: "Auctions", sub_auc: "EXCLUSIVE SNIPER IMMO ACCESS",
+                    expert: "Start an Expertise"
+                },
+                ar: {
+                    villas: "فيلات", sub_villas: "سكن فاخر ورفيع المستوى",
+                    indus: "صناعي", sub_indus: "مستودعات • مصانع • استثمارات",
+                    auc: "المزادات", sub_auc: "دخول حصري لـ Sniper Immo",
+                    expert: "بدء الخبرة"
+                }
+            };
+            
+            document.getElementById('txt-villas').innerText = content[lang].villas;
+            document.getElementById('sub-villas').innerText = content[lang].sub_villas;
+            document.getElementById('txt-indus').innerText = content[lang].indus;
+            document.getElementById('sub-indus').innerText = content[lang].sub_indus;
+            document.getElementById('txt-auc').innerText = content[lang].auc;
+            document.getElementById('sub-auc').innerText = content[lang].sub_auc;
+            document.getElementById('btn-expert').innerText = content[lang].expert;
+
+            // Change direction for Arabic
+            document.body.style.direction = (lang === 'ar') ? 'rtl' : 'ltr';
+        }
+    </script>
 </body>
 </html>
