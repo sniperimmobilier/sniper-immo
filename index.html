@@ -3,46 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sniper Immobilier | Prestige</title>
+    <title>Sniper Immobilier | Business Center</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
     <style>
         body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; }
-        .logo-container { width: 100%; max-width: 250px; margin: 0 auto; padding-top: 40px; }
-        .logo-container img { width: 100%; height: auto; }
-        .card-link { border: 1px solid #111; padding: 40px 20px; text-align: center; display: block; transition: all 0.3s ease; text-decoration: none; }
-        .card-link:hover { border-color: #d4af37; background: #050505; transform: translateY(-5px); }
-        .card-gold { border: 1px solid #d4af37; background: linear-gradient(180deg, #0a0800 0%, #000 100%); }
+        .hero-gradient { background: radial-gradient(circle at center, #111 0%, #000 100%); }
+        .gold-line { background: linear-gradient(90deg, transparent, #d4af37, transparent); }
+        .card-pro { 
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid #1a1a1a;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .card-pro:hover { 
+            border-color: #d4af37;
+            transform: translateY(-8px);
+            background: rgba(20, 20, 20, 1);
+        }
+        .flag-mini { width: 24px; height: 16px; border-radius: 2px; overflow: hidden; display: flex; }
     </style>
 </head>
-<body>
+<body class="hero-gradient min-h-screen flex flex-col">
 
-    <div class="logo-container">
-        <img src="logo.png" alt="Sniper Immobilier">
-    </div>
+    <nav class="flex justify-between items-center px-8 py-6 border-b border-white/5">
+        <div class="flag-mini">
+            <div class="bg-[#006233] w-1/2"></div>
+            <div class="bg-white w-1/2 relative"><span class="absolute left-[-4px] top-[2px] text-[8px] text-red-600">☪</span></div>
+        </div>
+        <div class="text-[9px] tracking-[5px] uppercase text-zinc-500">Algeria Strategy Bureau</div>
+    </nav>
 
-    <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 mb-20">
-        
-        <a href="villas.html" class="card-link">
-            <h3 class="text-[10px] uppercase tracking-[4px] text-white">Villas & Appartements</h3>
-            <p class="text-gray-600 text-[8px] uppercase tracking-[3px] mt-2">Hauts Standings</p>
+    <main class="flex-grow flex flex-col items-center justify-center px-6">
+        <div class="mb-16 text-center">
+            <img src="logo.png" alt="Sniper Immobilier" class="w-48 md:w-64 mx-auto mb-6 opacity-95">
+            <div class="gold-line h-[1px] w-32 mx-auto"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl w-full">
+            <a href="villas.html" class="card-pro p-10 group">
+                <span class="text-[#d4af37] text-[10px] tracking-[4px] uppercase mb-4 block opacity-50">Secteur 01</span>
+                <h2 class="text-xl font-light tracking-[4px] uppercase group-hover:text-[#d4af37] transition-colors">Villas</h2>
+                <p class="text-zinc-600 text-[9px] mt-4 leading-relaxed tracking-[2px]">RÉSIDENTIEL DE LUXE & HAUT STANDING</p>
+            </a>
+
+            <a href="industriel.html" class="card-pro p-10 group">
+                <span class="text-[#d4af37] text-[10px] tracking-[4px] uppercase mb-4 block opacity-50">Secteur 02</span>
+                <h2 class="text-xl font-light tracking-[4px] uppercase group-hover:text-[#d4af37] transition-colors">Industriel</h2>
+                <p class="text-zinc-600 text-[9px] mt-4 leading-relaxed tracking-[2px]">ENTREPÔTS • USINES • INVESTISSEMENTS</p>
+            </a>
+
+            <a href="encheres.html" class="card-pro p-10 border-[#d4af37]/30 bg-[#d4af37]/5 group">
+                <span class="text-[#d4af37] text-[10px] tracking-[4px] uppercase mb-4 block">Section Privée</span>
+                <h2 class="text-xl font-bold tracking-[4px] uppercase text-[#d4af37]">Enchères</h2>
+                <p class="text-zinc-400 text-[9px] mt-4 leading-relaxed tracking-[2px]">ACCÈS EXCLUSIF SNIPER IMMO</p>
+            </a>
+        </div>
+    </main>
+
+    <footer class="p-12 text-center">
+        <a href="https://wa.me/33634089609" class="inline-block py-4 px-10 border border-zinc-800 hover:border-[#d4af37] text-[10px] tracking-[5px] uppercase transition-all">
+            Lancer une expertise
         </a>
-
-        <a href="industriel.html" class="card-link">
-            <h3 class="text-[10px] uppercase tracking-[4px] text-white">Immobilier Industriel</h3>
-            <p class="text-gray-600 text-[8px] uppercase tracking-[3px] mt-2">Développement & Pro</p>
-        </a>
-        
-        <a href="encheres.html" class="card-link card-gold">
-            <h3 class="text-[11px] uppercase tracking-[5px] text-yellow-600 font-bold mb-4">Ventes aux Enchères</h3>
-            <span class="border border-yellow-900 px-3 py-1 text-[8px] text-yellow-700 tracking-[3px]">ACCÈS ABONNÉS</span>
-        </a>
-
-    </div>
-
-    <div class="text-center py-10 border-t border-zinc-900">
-        <a href="https://wa.me/33634089609" class="text-[10px] text-green-500 tracking-[4px] uppercase">Contact Direct WhatsApp</a>
-    </div>
+    </footer>
 
 </body>
 </html>
