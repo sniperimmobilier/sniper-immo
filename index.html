@@ -2,102 +2,71 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SNIPER IMMOBILIER</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sniper Immobilier</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; width: 100%; }
-        
-        /* Menu Langue Verrouillé */
-        .top-nav { height: 80px; display: flex; align-items: center; justify-content: flex-end; padding: 0 40px; position: relative; z-index: 1000; }
-        .lang-box { background: #d4af37; padding: 6px 15px; border-radius: 2px; position: fixed; right: 40px; top: 20px; }
-        select.lang-select { background: transparent; color: #000; font-size: 11px; font-weight: 700; border: none; outline: none; cursor: pointer; text-transform: uppercase; }
-
-        /* LOGO : On augmente la taille de l'image elle-même, PAS du site */
-        .logo-section { width: 100%; display: flex; justify-content: center; padding: 40px 0 20px 0; }
-        .logo-main { 
-            width: 600px !important; /* Taille massive pour effacer toute distraction */
-            max-width: 95vw; 
-            height: auto; 
-            object-fit: contain;
+        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; }
+        .lang-nav { position: absolute; top: 20px; right: 20px; z-index: 1000; }
+        .lang-select { 
+            background: #000; color: #d4af37; border: 1px solid #d4af37; 
+            padding: 5px 10px; font-size: 10px; cursor: pointer; text-transform: uppercase;
         }
-
-        /* Grille Business : Symétrie Totale */
-        .business-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 20px 40px; }
-        .sector-card { 
-            background: #080808; border: 1px solid #1a1a1a; height: 280px;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: all 0.3s ease; text-decoration: none;
-        }
-        .sector-card:hover { border-color: #d4af37; background: #0c0c0c; }
-        
-        /* Police Unifiée : font-weight 200 partout */
-        .title-h2 { font-weight: 200 !important; font-size: 1.4rem; letter-spacing: 8px; text-transform: uppercase; color: #fff; text-align: center; }
-        .title-gold { color: #d4af37 !important; }
-        .desc-p { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: #555; margin-top: 15px; text-align: center; }
-
-        @media (max-width: 768px) {
-            .business-grid { grid-template-columns: 1fr; gap: 15px; }
-            .logo-main { width: 350px !important; }
-            .sector-card { height: 200px; }
-        }
+        .card-ensemble { border: 1px solid #1a1a1a; padding: 40px 20px; transition: all 0.4s ease; display: block; height: 100%; text-decoration: none; }
+        .card-ensemble:hover { border-color: #d4af37; background: rgba(212, 175, 55, 0.02); }
+        .logo-img { width: 280px; height: auto; }
     </style>
 </head>
-<body class="bg-black">
+<body class="flex flex-col min-h-screen">
 
-    <nav class="top-nav">
-        <div class="lang-box">
-            <select class="lang-select" onchange="switchLang(this.value)">
-                <option value="fr">1. FR</option>
-                <option value="ar">2. AR</option>
-                <option value="en">3. EN</option>
-            </select>
-        </div>
-    </nav>
-
-    <div class="logo-section">
-        <img src="logo.png" alt="SNIPER IMMOBILIER" class="logo-main">
+    <div class="lang-nav">
+        <select class="lang-select" onchange="changeLanguage(this.value)">
+            <option value="en">3. English</option>
+            <option value="ar">2. العربية</option>
+            <option value="fr" selected>1. Français</option>
+        </select>
     </div>
 
-    <main class="business-grid">
-        <a href="villas.html" class="sector-card">
-            <h2 id="l-villas" class="title-h2">Villas</h2>
-            <p id="s-villas" class="desc-p">Prestige</p>
-        </a>
+    <div class="flex-grow flex flex-col items-center justify-center">
+        <img src="logo.png" alt="Sniper Immobilier" class="logo-img mb-16">
+        
+        <div class="max-w-6xl w-full px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <a href="villas.html" class="card-ensemble text-center">
+                <h3 id="t1" class="text-[11px] uppercase tracking-[5px] text-white">Villas & Appartements</h3>
+                <p id="s1" class="text-gray-600 text-[8px] uppercase tracking-[3px] mt-4">Résidentiel Haut Standing</p>
+            </a>
 
-        <a href="industriel.html" class="sector-card">
-            <h2 id="l-indus" class="title-h2">Industriel</h2>
-            <p id="s-indus" class="desc-p">Business</p>
-        </a>
+            <a href="industriel.html" class="card-ensemble text-center">
+                <h3 id="t2" class="text-[11px] uppercase tracking-[5px] text-white">Immobilier Industriel</h3>
+                <p id="s2" class="text-gray-600 text-[8px] uppercase tracking-[3px] mt-4">Développement & Business</p>
+            </a>
+            
+            <a href="encheres.html" class="card-ensemble text-center">
+                <h3 id="t3" class="text-[11px] uppercase tracking-[5px] text-white">Ventes aux Enchères</h3>
+                <p id="s3" class="text-gray-600 text-[8px] uppercase tracking-[3px] mt-4">Accès Abonnés</p>
+            </a>
+        </div>
+    </div>
 
-        <a href="encheres.html" class="sector-card">
-            <h2 id="l-auc" class="title-h2 title-gold">Enchères</h2>
-            <p id="s-auc" class="desc-p">Privilège</p>
-        </a>
-    </main>
-
-    <footer class="py-12 text-center">
-        <a id="l-btn" href="https://wa.me/33634089609" class="inline-block py-4 px-12 border border-zinc-800 text-[10px] tracking-[6px] uppercase hover:border-[#d4af37] transition-all">
-            Contact Direct
-        </a>
+    <footer class="p-10 text-center">
+        <a id="btn" href="https://wa.me/33634089609" class="text-[9px] tracking-[4px] uppercase text-zinc-700 hover:text-[#d4af37]">Contact Expertise</a>
     </footer>
 
     <script>
-        function switchLang(lang) {
-            const data = {
-                fr: { v:"Villas", sv:"Prestige", i:"Industriel", si:"Business", a:"Enchères", sa:"Privilège", b:"Contact Direct" },
-                en: { v:"Villas", sv:"Prestige", i:"Industrial", si:"Business", a:"Auctions", sa:"Privileged", b:"Direct Contact" },
-                ar: { v:"فيلات", sv:"فخامة", i:"صناعي", si:"أعمال", a:"مزادات", sa:"امتياز", b:"اتصال مباشر" }
+        function changeLanguage(lang) {
+            const c = {
+                fr: { t1:"Villas & Appartements", s1:"Résidentiel Haut Standing", t2:"Immobilier Industriel", s2:"Développement & Business", t3:"Ventes aux Enchères", s3:"Accès Abonnés", b:"Contact Expertise" },
+                en: { t1:"Villas & Apartments", s1:"High Standing Residential", t2:"Industrial Real Estate", s2:"Development & Business", t3:"Public Auctions", s3:"Member Access", b:"Expert Contact" },
+                ar: { t1:"فيلات وشقق", s1:"سكن فاخر", t2:"العقارات الصناعية", s2:"تطوير وأعمال", t3:"المزادات العلنية", s3:"دخول المشتركين", b:"اتصال الخبراء" }
             };
-            document.getElementById('l-villas').innerText = data[lang].v;
-            document.getElementById('s-villas').innerText = data[lang].sv;
-            document.getElementById('l-indus').innerText = data[lang].i;
-            document.getElementById('s-indus').innerText = data[lang].si;
-            document.getElementById('l-auc').innerText = data[lang].a;
-            document.getElementById('s-auc').innerText = data[lang].sa;
-            document.getElementById('l-btn').innerText = data[lang].b;
+            document.getElementById('t1').innerText = c[lang].t1;
+            document.getElementById('s1').innerText = c[lang].s1;
+            document.getElementById('t2').innerText = c[lang].t2;
+            document.getElementById('s2').innerText = c[lang].s2;
+            document.getElementById('t3').innerText = c[lang].t3;
+            document.getElementById('s3').innerText = c[lang].s3;
+            document.getElementById('btn').innerText = c[lang].b;
             document.body.style.direction = (lang === 'ar') ? 'rtl' : 'ltr';
         }
     </script>
