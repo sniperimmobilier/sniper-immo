@@ -7,27 +7,36 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; }
+        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
         
-        /* Menu Langue 3-2-1 en haut à droite */
-        .top-nav { position: absolute; top: 20px; right: 40px; z-index: 1000; display: flex; gap: 10px; }
+        /* Menu Langue 3-2-1 à droite */
+        .top-nav { position: absolute; top: 25px; right: 40px; z-index: 1000; }
         .lang-select { 
             background: #000; color: #d4af37; border: 1px solid #d4af37; 
             padding: 5px 10px; font-size: 10px; cursor: pointer; text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* Drapeau Algérie en haut à gauche */
-        .flag-dz { position: absolute; top: 20px; left: 40px; width: 45px; height: 30px; display: flex; border: 1px solid #333; }
+        /* Drapeau Algérie à gauche */
+        .flag-dz { 
+            position: absolute; top: 25px; left: 40px; 
+            width: 40px; height: 26px; 
+            display: flex; border: 1px solid #333; 
+        }
         .dz-green { background: #006233; width: 50%; height: 100%; }
         .dz-white { background: #fff; width: 50%; height: 100%; position: relative; }
-        .dz-star { position: absolute; left: -8px; top: 50%; transform: translateY(-50%); color: #d21034; font-size: 14px; }
+        .dz-star { position: absolute; left: -7px; top: 50%; transform: translateY(-50%); color: #d21034; font-size: 12px; }
 
-        /* Masquage du symbole IA sous le logo */
-        .logo-container { position: relative; width: 280px; height: auto; margin-bottom: 60px; overflow: hidden; }
-        .logo-img { width: 100%; height: auto; }
-        .ia-mask { 
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 25px; 
-            background: #000; /* Ce rectangle noir cache l'étoile IA */
+        /* Conteneur Logo avec Masque Anti-IA */
+        .logo-wrapper { position: relative; display: inline-block; margin-bottom: 60px; }
+        .logo-img { width: 280px; height: auto; display: block; }
+        .ia-blocker { 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 22px; /* Hauteur précise pour couvrir l'étoile */
+            background: #000; 
         }
 
         .card-ensemble { border: 1px solid #1a1a1a; padding: 45px 20px; transition: all 0.4s ease; display: block; height: 100%; text-decoration: none; }
@@ -50,20 +59,49 @@
     </div>
 
     <div class="flex-grow flex flex-col items-center justify-center">
-        <div class="logo-container">
+        <div class="logo-wrapper">
             <img src="logo.png" alt="Sniper Immobilier" class="logo-img">
-            <div class="ia-mask"></div>
+            <div class="ia-blocker"></div>
         </div>
         
         <div class="max-w-6xl w-full px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
             <a href="villas.html" class="card-ensemble text-center">
-                <h3 id="t1" class="text-[11px] uppercase tracking-[5px] text-white">Villas & Appartements</h3>
+                <h3 id="t1" class="text-[11px] uppercase tracking-[5px] text-white font-light">Villas & Appartements</h3>
                 <p id="s1" class="text-gray-600 text-[8px] uppercase tracking-[3px] mt-4">Résidentiel Haut Standing</p>
             </a>
 
             <a href="industriel.html" class="card-ensemble text-center">
-                <h3 id="t2" class="text-[11px] uppercase tracking-[5px] text-white">Immobilier Industriel</h3>
+                <h3 id="t2" class="text-[11px] uppercase tracking-[5px] text-white font-light">Immobilier Industriel</h3>
                 <p id="s2" class="text-gray-600 text-[8px] uppercase tracking-[3px] mt-4">Développement & Business</p>
             </a>
             
-            <a href="encheres.html" class="card-ensemble text-center border-zinc-900">
+            <a href="encheres.html" class="card-ensemble text-center">
+                <h3 id="t3" class="text-[11px] uppercase tracking-[5px] text-white font-light">Ventes aux Enchères</h3>
+                <p id="s3" class="text-gray-600 text-[8px] uppercase tracking-[3px] mt-4">Accès Abonnés</p>
+            </a>
+        </div>
+    </div>
+
+    <footer class="p-10 text-center">
+        <a id="btn" href="https://wa.me/33634089609" class="text-[9px] tracking-[5px] uppercase text-zinc-600 hover:text-[#d4af37] transition-all">Contact Expertise</a>
+    </footer>
+
+    <script>
+        function changeLanguage(lang) {
+            const c = {
+                fr: { t1:"Villas & Appartements", s1:"Résidentiel Haut Standing", t2:"Immobilier Industriel", s2:"Développement & Business", t3:"Ventes aux Enchères", s3:"Accès Abonnés", b:"Contact Expertise" },
+                en: { t1:"Villas & Apartments", s1:"High Standing Residential", t2:"Industrial Real Estate", s2:"Development & Business", t3:"Public Auctions", s3:"Member Access", b:"Expert Contact" },
+                ar: { t1:"فيلات وشقق", s1:"سكن فاخر", t2:"العقارات الصناعية", s2:"تطوير وأعمال", t3:"المزادات العلنية", s3:"دخول المشتركين", b:"اتصال الخبراء" }
+            };
+            document.getElementById('t1').innerText = c[lang].t1;
+            document.getElementById('s1').innerText = c[lang].s1;
+            document.getElementById('t2').innerText = c[lang].t2;
+            document.getElementById('s2').innerText = c[lang].s2;
+            document.getElementById('t3').innerText = c[lang].t3;
+            document.getElementById('s3').innerText = c[lang].s3;
+            document.getElementById('btn').innerText = c[lang].b;
+            document.body.style.direction = (lang === 'ar') ? 'rtl' : 'ltr';
+        }
+    </script>
+</body>
+</html>
