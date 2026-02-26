@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Villas | Sniper Immobilier</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #000; color: #fff; font-family: sans-serif; }
+        .card { border: 1px solid #d4af37; padding: 20px; margin-bottom: 20px; }
+    </style>
+</head>
+<body class="p-10">
+    <a href="index.html" style="color:#d4af37">← Retour</a>
+    <h1 class="text-3xl uppercase tracking-widest my-10 text-center">Villas de Prestige</h1>
+    <div id="villas-container" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+    <script>
+        const TOKEN = "patxXCh49k5hv8bZH"; 
+        const BASE_ID = "app101Rd6gKDfb4WT";
+        async function load() {
+            try {
+                const res = await fetch(`https://api.airtable.com/v0/${BASE_ID}/Villas`, {
+                    headers: { Authorization: `Bearer ${TOKEN}` }
+                });
+                const data = await res.json();
+                const container = document.getElementById('villas-container');
+                container.innerHTML = '';
+                data.records.forEach(r => {
+                    const img = r.fields.Photos ? r.fields.Photos[0].url : '';
+                    container.innerHTML += `
+                        <div class="card">
+                            <img src="${img}" class="w-full h-48 object-cover mb-4">
+                            <h3 class="font-bold">${r.fields.Nom || 'Sans nom'}</h3>
+                            <p class="text-gray-400">${r.fields.Ville || ''}</p>
+                            <p class="text-[#d4af37] mt-2">${new Intl.NumberFormat().format(r.fields.Prix || 0)} DZD</p>
+                        </div>`;
+                });
+            } catch (e) { console.error(e); }
+        }
+        load();
+    </script>
+</body>
+</html>
