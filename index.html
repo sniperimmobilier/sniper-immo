@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sniper Immobilier | Accueil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #000; color: #fff; font-family: sans-serif; transition: all 0.3s; }
+        .gold-border { border: 1px solid #d4af37; }
+        .gold-text { color: #d4af37; }
+        .btn-menu { border: 1px solid #d4af37; padding: 20px; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; display: block; text-align: center; }
+        .btn-menu:hover { background: #d4af37; color: #000; }
+        .rtl { direction: rtl; }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-6">
+
+    <div class="fixed top-5 right-5 flex gap-4 bg-black p-2 border border-gray-800">
+        <button onclick="setLanguage('fr')" class="hover:text-[#d4af37] px-2">FR</button>
+        <button onclick="setLanguage('en')" class="hover:text-[#d4af37] px-2">EN</button>
+        <button onclick="setLanguage('ar')" class="hover:text-[#d4af37] px-2">AR</button>
+    </div>
+
+    <header class="text-center mb-16">
+        <h1 id="main-title" class="text-4xl font-light tracking-[15px] gold-text uppercase mb-4">Sniper Immobilier</h1>
+        <p id="main-subtitle" class="text-gray-400 tracking-widest uppercase text-sm">Prestige & Excellence</p>
+    </header>
+
+    <main class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
+        <a href="villas.html" class="btn-menu" id="menu-villas">Villas</a>
+        <a href="industriel.html" class="btn-menu" id="menu-industriel">Industriel</a>
+        <a href="encheres.html" class="btn-menu" id="menu-encheres">Enchères</a>
+    </main>
+
+    <script>
+        const translations = {
+            fr: {
+                title: "Sniper Immobilier",
+                subtitle: "Prestige & Excellence",
+                villas: "Villas de Prestige",
+                industriel: "Immobilier Industriel",
+                encheres: "Ventes aux Enchères",
+                align: "ltr"
+            },
+            en: {
+                title: "Sniper Real Estate",
+                subtitle: "Prestige & Excellence",
+                villas: "Luxury Villas",
+                industriel: "Industrial Property",
+                encheres: "Public Auctions",
+                align: "ltr"
+            },
+            ar: {
+                title: "سنايبر العقارية",
+                subtitle: "فخامة وتميز",
+                villas: "فيلات فخمة",
+                industriel: "العقار الصناعي",
+                encheres: "المزادات العلنية",
+                align: "rtl"
+            }
+        };
+
+        function setLanguage(lang) {
+            localStorage.setItem('selectedLanguage', lang);
+            applyLanguage();
+        }
+
+        function applyLanguage() {
+            const lang = localStorage.getItem('selectedLanguage') || 'fr';
+            const t = translations[lang];
+
+            document.getElementById('main-title').innerText = t.title;
+            document.getElementById('main-subtitle').innerText = t.subtitle;
+            document.getElementById('menu-villas').innerText = t.villas;
+            document.getElementById('menu-industriel').innerText = t.industriel;
+            document.getElementById('menu-encheres').innerText = t.encheres;
+
+            if (t.align === "rtl") {
+                document.body.classList.add('rtl');
+            } else {
+                document.body.classList.remove('rtl');
+            }
+        }
+
+        applyLanguage();
+    </script>
+</body>
+</html>
