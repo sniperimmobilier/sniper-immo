@@ -3,50 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enchères | Sniper Immobilier</title>
+    <title>Villas | Sniper Immobilier</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #000; color: #fff; font-family: sans-serif; }
-        .card { border: 1px solid #d4af37; padding: 20px; background: #111; transition: 0.3s; }
+        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; }
+        .flag-dz { position: absolute; top: 25px; left: 40px; width: 40px; height: 26px; display: flex; border: 1px solid #333; z-index: 100; }
+        .dz-green { background: #006233; width: 50%; height: 100%; }
+        .dz-white { background: #fff; width: 50%; height: 100%; position: relative; }
+        .dz-star { position: absolute; left: -7px; top: 50%; transform: translateY(-50%); color: #d21034; font-size: 12px; line-height: 1; }
         .gold-text { color: #d4af37; }
-        .rtl { direction: rtl; }
+        .card { border: 1px solid #1a1a1a; padding: 20px; transition: 0.3s; background: #050505; }
+        .card:hover { border-color: #d4af37; }
     </style>
 </head>
 <body class="p-10">
-    <nav class="mb-10"><a href="index.html" id="btn-back" class="gold-text uppercase tracking-widest text-sm">← Retour</a></nav>
-    <h1 id="page-title" class="text-3xl uppercase tracking-[10px] my-10 text-center gold-text">Ventes aux Enchères</h1>
-    <div id="auction-container" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+    <div class="flag-dz">
+        <div class="dz-green"></div>
+        <div class="dz-white"><span class="dz-star">☪</span></div>
+    </div>
+
+    <nav class="mb-20 text-right">
+        <a href="index.html" id="btn-back" class="gold-text uppercase tracking-[3px] text-[10px]">← Retour</a>
+    </nav>
+
+    <h1 id="page-title" class="text-center text-[14px] uppercase tracking-[8px] mb-16 font-light">Chargement...</h1>
+    <div id="container" class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto"></div>
+
     <script>
         const TOKEN = "patxXCh49k5hv8bZH"; 
         const BASE_ID = "app101Rd6gKDfb4WT";
-        const uiStrings = {
-            fr: { title: "Ventes aux Enchères", back: "← Retour", unit: "DZD", align: "ltr" },
-            en: { title: "Public Auctions", back: "← Back", unit: "DZD", align: "ltr" },
-            ar: { title: "المزادات العلنية", back: "رجوع →", unit: "د.ج", align: "rtl" }
-        };
         const lang = localStorage.getItem('selectedLanguage') || 'fr';
-        const ui = uiStrings[lang];
-        document.getElementById('page-title').innerText = ui.title;
-        document.getElementById('btn-back').innerText = ui.back;
-        if(ui.align === "rtl") document.body.classList.add('rtl');
+        const ui = {
+            fr: { t: "Villas & Appartements", b: "← Retour", u: "DZD", r: false },
+            en: { t: "Villas & Apartments", b: "← Back", u: "DZD", r: false },
+            ar: { t: "فيلات وشقق", b: "رجوع →", u: "د.ج", r: true }
+        }[lang];
 
-        async function load() {
-            const container = document.getElementById('auction-container');
-            try {
-                const res = await fetch(`https://api.airtable.com/v0/${BASE_ID}/Encheres`, {
-                    headers: { Authorization: `Bearer ${TOKEN}` }
-                });
-                const data = await res.json();
-                container.innerHTML = data.records.map(r => `
-                    <div class="card ${ui.align === 'rtl' ? 'text-right' : 'text-left'}">
-                        <img src="${r.fields.Photos ? r.fields.Photos[0].url : 'https://via.placeholder.com/400x300'}" class="w-full h-64 object-cover mb-4">
-                        <h3 class="font-bold text-xl mb-2">${r.fields.Nom || 'Lot'}</h3>
-                        <p class="text-gray-400 italic mb-4">${r.fields.Ville || ''}</p>
-                        <p class="gold-text text-2xl font-light">${new Intl.NumberFormat().format(r.fields.Prix || 0)} ${ui.unit}</p>
-                    </div>`).join('');
-            } catch (e) { console.error(e); }
-        }
-        load();
+        document.getElementById('page-title').innerText = ui.t;
+        document.getElementById('btn-back').innerText = ui.b;
+        if(ui.r) document.body.style.direction = 'rtl';
+
+        fetch("https://api.airtable.com/v0/" + BASE_ID + "/encheres", {
+            headers: { Authorization: "Bearer " + TOKEN }
+        })
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('container').innerHTML = data.records.map(r => `
+                <div class="card">
+                    <img src="${r.fields.Photos ? r.fields.Photos[0].url : ''}" class="w-full h-64 object-cover mb-6 grayscale hover:grayscale-0 transition-all">
+                    <h3 class="text-[11px] uppercase tracking-[3px] mb-2">${r.fields.Nom || ''}</h3>
+                    <p class="text-[#d4af37] text-[13px] font-light">${new Intl.NumberFormat().format(r.fields.Prix || 0)} ${ui.u}</p>
+                </div>`).join('');
+        });
     </script>
 </body>
 </html>
