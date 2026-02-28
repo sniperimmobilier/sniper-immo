@@ -2,20 +2,19 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Villas | Sniper Immobilier</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background-color: #000; color: #fff; font-family: sans-serif; }
-        .card { border: 1px solid #d4af37; padding: 20px; background: #111; transition: 0.3s; }
+        .card { border: 1px solid #d4af37; padding: 20px; background: #111; }
         .gold-text { color: #d4af37; }
         .rtl { direction: rtl; }
     </style>
 </head>
 <body class="p-10">
     <nav class="mb-10"><a href="index.html" id="btn-back" class="gold-text uppercase text-sm">← Retour</a></nav>
-    <h1 id="page-title" class="text-3xl uppercase tracking-[10px] my-10 text-center gold-text">Villas</h1>
-    <div id="villas-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">Chargement...</div>
+    <h1 id="page-title" class="text-3xl uppercase tracking-[10px] my-10 text-center gold-text">Chargement...</h1>
+    <div id="villas-container" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
 
     <script>
         const TOKEN = "patxXCh49k5hv8bZH"; 
@@ -29,18 +28,17 @@
         };
 
         const ui = uiStrings[lang] || uiStrings.fr;
-
         document.getElementById('page-title').innerText = ui.t;
         document.getElementById('btn-back').innerText = ui.b;
         if(ui.r) document.body.classList.add('rtl');
 
-        fetch(`https://api.airtable.com/v0/${BASE_ID}/Villas`, {
-            headers: { Authorization: `Bearer ${TOKEN}` }
+        fetch("https://api.airtable.com/v0/" + BASE_ID + "/Villas", {
+            headers: { "Authorization": "Bearer " + TOKEN }
         })
         .then(response => response.json())
         .then(data => {
             const container = document.getElementById('villas-container');
-            if (!data.records) { container.innerHTML = "Erreur de chargement des données."; return; }
+            if (!data.records) { container.innerHTML = "Erreur Airtable"; return; }
             
             container.innerHTML = data.records.map(rec => {
                 const f = rec.fields;
@@ -54,10 +52,66 @@
                     </div>`;
             }).join('');
         })
-        .catch(error => {
-            document.getElementById('villas-container').innerHTML = "Erreur de connexion à la base de données.";
-            console.error(error);
-        });
+        .catch(error => { console.error(error); });
+    </script>
+</body>
+</html>
+EOFcat <<'EOF' > ~/Desktop/SNIPER_IMMO/villas.html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Villas | Sniper Immobilier</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #000; color: #fff; font-family: sans-serif; }
+        .card { border: 1px solid #d4af37; padding: 20px; background: #111; }
+        .gold-text { color: #d4af37; }
+        .rtl { direction: rtl; }
+    </style>
+</head>
+<body class="p-10">
+    <nav class="mb-10"><a href="index.html" id="btn-back" class="gold-text uppercase text-sm">← Retour</a></nav>
+    <h1 id="page-title" class="text-3xl uppercase tracking-[10px] my-10 text-center gold-text">Chargement...</h1>
+    <div id="villas-container" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+
+    <script>
+        const TOKEN = "patxXCh49k5hv8bZH"; 
+        const BASE_ID = "app101Rd6gKDfb4WT";
+        const lang = localStorage.getItem('selectedLanguage') || 'fr';
+        
+        const uiStrings = {
+            fr: { t: "Villas de Prestige", b: "← Retour", u: "DZD", r: false },
+            en: { t: "Luxury Villas", b: "← Back", u: "DZD", r: false },
+            ar: { t: "فيلات فخمة", b: "رجوع →", u: "د.ج", r: true }
+        };
+
+        const ui = uiStrings[lang] || uiStrings.fr;
+        document.getElementById('page-title').innerText = ui.t;
+        document.getElementById('btn-back').innerText = ui.b;
+        if(ui.r) document.body.classList.add('rtl');
+
+        fetch("https://api.airtable.com/v0/" + BASE_ID + "/Villas", {
+            headers: { "Authorization": "Bearer " + TOKEN }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('villas-container');
+            if (!data.records) { container.innerHTML = "Erreur Airtable"; return; }
+            
+            container.innerHTML = data.records.map(rec => {
+                const f = rec.fields;
+                const img = f.Photos ? f.Photos[0].url : 'https://via.placeholder.com/400x300';
+                return `
+                    <div class="card ${ui.r ? 'text-right' : 'text-left'}">
+                        <img src="${img}" class="w-full h-64 object-cover mb-4">
+                        <h3 class="font-bold text-xl mb-2">${f.Nom || 'Villa'}</h3>
+                        <p class="text-gray-400 italic mb-4">${f.Ville || ''}</p>
+                        <p class="gold-text text-2xl font-light">${new Intl.NumberFormat().format(f.Prix || 0)} ${ui.u}</p>
+                    </div>`;
+            }).join('');
+        })
+        .catch(error => { console.error(error); });
     </script>
 </body>
 </html>
