@@ -5,64 +5,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sniper Immobilier | Accueil</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #000; color: #fff; font-family: sans-serif; }
-        .gold-text { color: #d4af37; }
-        .btn-menu { border: 1px solid #d4af37; padding: 25px; text-transform: uppercase; letter-spacing: 3px; transition: 0.3s; display: block; text-align: center; background: rgba(0,0,0,0.5); }
-        .btn-menu:hover { background: #d4af37; color: #000; }
-        .flag-icon { width: 30px; height: auto; border-radius: 2px; }
-        .rtl { direction: rtl; }
+        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
+        
+        /* Menu Langue 3-2-1 à droite */
+        .top-nav { position: absolute; top: 25px; right: 40px; z-index: 1000; }
+        .lang-select { 
+            background: #000; color: #d4af37; border: 1px solid #d4af37; 
+            padding: 5px 10px; font-size: 10px; cursor: pointer; text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Drapeau Algérie à gauche */
+        .flag-dz { 
+            position: absolute; top: 25px; left: 40px; 
+            width: 40px; height: 26px; 
+            display: flex; border: 1px solid #333; 
+        }
+        .dz-green { background: #006233; width: 50%; height: 100%; }
+        .dz-white { background: #fff; width: 50%; height: 100%; position: relative; }
+        .dz-star { position: absolute; left: -7px; top: 50%; transform: translateY(-50%); color: #d21034; font-size: 12px; }
+
+        /* Conteneur Logo avec Masque Anti-IA */
+        .logo-wrapper { position: relative; display: inline-block; margin-bottom: 60px; }
+        .logo-img { width: 280px; height: auto; display: block; }
+        .ia-blocker { 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 22px; 
+            background: #000; 
+        }
+
+        .card-ensemble { border: 1px solid #1a1a1a; padding: 45px 20px; transition: all 0.4s ease; display: block; height: 100%; text-decoration: none; }
+        .card-ensemble:hover { border-color: #d4af37; background: rgba(212, 175, 55, 0.02); }
     </style>
 </head>
-<body class="flex flex-col items-center justify-center min-h-screen p-6">
+<body class="flex flex-col min-h-screen">
 
-    <div class="fixed top-5 right-5 flex gap-4 bg-black p-3 border border-gray-800 z-50">
-        <button onclick="setLanguage('fr')" class="hover:text-[#d4af37] text-xs">FR</button>
-        <button onclick="setLanguage('en')" class="hover:text-[#d4af37] text-xs">EN</button>
-        <button onclick="setLanguage('ar')" class="hover:text-[#d4af37] text-xs">AR</button>
+    <div class="flag-dz">
+        <div class="dz-green"></div>
+        <div class="dz-white"><span class="dz-star">☪</span></div>
     </div>
 
-    <header class="text-center mb-16">
-        <div class="flex items-center justify-center gap-4 mb-6">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_Algeria.svg" alt="Algérie" class="flag-icon">
-            <div class="w-16 h-16 border-2 border-[#d4af37] rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.4)]">
-                <span class="gold-text text-2xl font-bold">S</span>
-            </div>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_Algeria.svg" alt="Algérie" class="flag-icon">
-        </div>
-        <h1 id="main-title" class="text-4xl font-light tracking-[12px] gold-text uppercase mb-4">Sniper Immobilier</h1>
-        <p id="main-subtitle" class="text-gray-400 tracking-[5px] uppercase text-xs">Prestige & Excellence en Algérie</p>
-    </header>
+    <div class="top-nav">
+        <select class="lang-select" onchange="changeLanguage(this.value)">
+            <option value="en">3. English</option>
+            <option value="ar">2. العربية</option>
+            <option value="fr" selected>1. Français</option>
+        </select>
+    </div>
 
-    <main class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
-        <a href="villas.html" class="btn-menu" id="menu-villas">Villas</a>
-        <a href="industriel.html" class="btn-menu" id="menu-industriel">Industriel</a>
-        <a href="encheres.html" class="btn-menu" id="menu-encheres">Enchères</a>
-    </main>
+    <div class="flex-grow flex flex-col items-center justify-center">
+        <div class="logo-wrapper">
+            <img src="logo.png" alt="Sniper Immobilier" class="logo-img">
+            <div class="ia-blocker"></div>
+        </div>
+        
+        <div class="max-w-6xl w-full px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <a href="villas.html" class="card-ensemble text-center">
+                <h3 id="t1" class="text-[11px] uppercase tracking-[5px] text-white font-light">Villas & Appartements</h3>
+                <p id="s1" class="text-gray-600 text-[8px] uppercase tracking-[3px] mt-4">Résidentiel Haut Standing</p>
+            </a>
+
+            <a href="industriel.html" class="card-ensemble text-center">
+                <h3 id="t2" class="text-[11px] uppercase tracking-[5px] text-white font-light">Immobilier Industriel</h3>
+                <p id="s2" class="text-gray-600 text-[8px] uppercase tracking-[3px] mt-4">Développement & Business</p>
+            </a>
+            
+            <a href="encheres.html" class="card-ensemble text-center">
+                <h3 id="t3" class="text-[11px] uppercase tracking-[5px] text-white font-light">Ventes aux Enchères</h3>
+                <p id="s3" class="text-gray-600 text-[8px] uppercase tracking-[3px] mt-4">Accès Abonnés</p>
+            </a>
+        </div>
+    </div>
+
+    <footer class="p-10 text-center">
+        <a id="btn" href="https://wa.me/33634089609" class="text-[9px] tracking-[5px] uppercase text-zinc-600 hover:text-[#d4af37] transition-all">Contact Expertise</a>
+    </footer>
 
     <script>
-        const translations = {
-            fr: { title: "Sniper Immobilier", subtitle: "Prestige & Excellence en Algérie", villas: "Villas", industriel: "Industriel", encheres: "Enchères", align: "ltr" },
-            en: { title: "Sniper Real Estate", subtitle: "Prestige & Excellence in Algeria", villas: "Villas", industriel: "Industrial", encheres: "Auctions", align: "ltr" },
-            ar: { title: "سنايبر العقارية", subtitle: "فخامة وتميز dans l'Algérie", villas: "فيلات", industriel: "صناعي", encheres: "مزادات", align: "rtl" }
-        };
-
-        function setLanguage(lang) {
-            localStorage.setItem('selectedLanguage', lang);
-            applyLanguage();
+        function changeLanguage(lang) {
+            localStorage.setItem('selectedLanguage', lang); // Mémorise la langue pour les autres pages
+            const c = {
+                fr: { t1:"Villas & Appartements", s1:"Résidentiel Haut Standing", t2:"Immobilier Industriel", s2:"Développement & Business", t3:"Ventes aux Enchères", s3:"Accès Abonnés", b:"Contact Expertise" },
+                en: { t1:"Villas & Apartments", s1:"High Standing Residential", t2:"Industrial Real Estate", s2:"Development & Business", t3:"Public Auctions", s3:"Member Access", b:"Expert Contact" },
+                ar: { t1:"فيلات وشقق", s1:"سكن فاخر", t2:"العقارات الصناعية", s2:"تطوير وأعمال", t3:"المزادات العلنية", s3:"دخول المشتركين", b:"اتصال الخبراء" }
+            };
+            document.getElementById('t1').innerText = c[lang].t1;
+            document.getElementById('s1').innerText = c[lang].s1;
+            document.getElementById('t2').innerText = c[lang].t2;
+            document.getElementById('s2').innerText = c[lang].s2;
+            document.getElementById('t3').innerText = c[lang].t3;
+            document.getElementById('s3').innerText = c[lang].s3;
+            document.getElementById('btn').innerText = c[lang].b;
+            document.body.style.direction = (lang === 'ar') ? 'rtl' : 'ltr';
         }
-
-        function applyLanguage() {
-            const lang = localStorage.getItem('selectedLanguage') || 'fr';
-            const t = translations[lang];
-            document.getElementById('main-title').innerText = t.title;
-            document.getElementById('main-subtitle').innerText = t.subtitle;
-            document.getElementById('menu-villas').innerText = t.villas;
-            document.getElementById('menu-industriel').innerText = t.industriel;
-            document.getElementById('menu-encheres').innerText = t.encheres;
-            document.body.classList.toggle('rtl', t.align === "rtl");
-        }
-        applyLanguage();
+        // Appliquer la langue stockée au chargement
+        const savedLang = localStorage.getItem('selectedLanguage') || 'fr';
+        document.querySelector('.lang-select').value = savedLang;
+        changeLanguage(savedLang);
     </script>
 </body>
 </html>
