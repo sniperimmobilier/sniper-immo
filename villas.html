@@ -2,41 +2,66 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Villas | Sniper Immobilier</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #000; color: #fff; font-family: sans-serif; }
-        .card { border: 1px solid #d4af37; padding: 20px; margin-bottom: 20px; }
+        body { background-color: #000; color: #fff; font-family: sans-serif; transition: all 0.3s; }
+        .card { border: 1px solid #d4af37; padding: 20px; background: #111; transition: 0.3s; }
+        .gold-text { color: #d4af37; }
+        .rtl { direction: rtl; }
     </style>
 </head>
 <body class="p-10">
-    <a href="index.html" style="color:#d4af37">← Retour</a>
-    <h1 class="text-3xl uppercase tracking-widest my-10 text-center">Villas de Prestige</h1>
-    <div id="villas-container" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+    <nav class="mb-10">
+        <a href="index.html" id="btn-back" class="gold-text uppercase tracking-widest text-sm">← Retour</a>
+    </nav>
+
+    <h1 id="page-title" class="text-3xl uppercase tracking-[10px] my-10 text-center gold-text">Villas de Prestige</h1>
+    
+    <div id="villas-container" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+
     <script>
         const TOKEN = "patxXCh49k5hv8bZH"; 
         const BASE_ID = "app101Rd6gKDfb4WT";
-        async function load() {
+        
+        const uiStrings = {
+            fr: { title: "Villas de Prestige", back: "← Retour", unit: "DZD", align: "ltr" },
+            en: { title: "Luxury Villas", back: "← Back", unit: "DZD", align: "ltr" },
+            ar: { title: "فيلات فخمة", back: "رجوع →", unit: "د.ج", align: "rtl" }
+        };
+
+        const currentLang = localStorage.getItem('selectedLanguage') || 'fr';
+        const ui = uiStrings[currentLang];
+
+        document.getElementById('page-title').innerText = ui.title;
+        document.getElementById('btn-back').innerText = ui.back;
+        if(ui.align === "rtl") document.body.classList.add('rtl');
+
+        async function loadVillas() {
+            const container = document.getElementById('villas-container');
             try {
                 const res = await fetch(`https://api.airtable.com/v0/${BASE_ID}/Villas`, {
                     headers: { Authorization: `Bearer ${TOKEN}` }
                 });
                 const data = await res.json();
-                const container = document.getElementById('villas-container');
-                container.innerHTML = '';
-                data.records.forEach(r => {
-                    const img = r.fields.Photos ? r.fields.Photos[0].url : '';
-                    container.innerHTML += `
-                        <div class="card">
-                            <img src="${img}" class="w-full h-48 object-cover mb-4">
-                            <h3 class="font-bold">${r.fields.Nom || 'Sans nom'}</h3>
-                            <p class="text-gray-400">${r.fields.Ville || ''}</p>
-                            <p class="text-[#d4af37] mt-2">${new Intl.NumberFormat().format(r.fields.Prix || 0)} DZD</p>
+                
+                container.innerHTML = data.records.map(r => {
+                    const f = r.fields;
+                    const img = f.Photos ? f.Photos[0].url : 'https://via.placeholder.com/400x300';
+                    return `
+                        <div class="card ${ui.align === 'rtl' ? 'text-right' : 'text-left'}">
+                            <img src="${img}" class="w-full h-64 object-cover mb-4">
+                            <h3 class="font-bold text-xl mb-2">${f.Nom || 'Villa'}</h3>
+                            <p class="text-gray-400 italic mb-4">${f.Ville || ''}</p>
+                            <p class="gold-text text-2xl font-light">
+                                ${new Intl.NumberFormat().format(f.Prix || 0)} ${ui.unit}
+                            </p>
                         </div>`;
-                });
-            } catch (e) { console.error(e); }
+                }).join('');
+            } catch (error) { console.error(error); }
         }
-        load();
+        loadVillas();
     </script>
 </body>
 </html>
