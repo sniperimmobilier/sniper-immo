@@ -3,62 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sniper Immobilier | Accueil</title>
+    <title>Sniper Immobilier | Prestige & Excellence</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #000; color: #fff; font-family: sans-serif; transition: all 0.3s; }
+        body { background-color: #050505; color: #fff; font-family: 'Inter', sans-serif; transition: all 0.4s ease; }
+        .gold-text { color: #d4af37; font-family: 'Cinzel', serif; }
         .gold-border { border: 1px solid #d4af37; }
-        .gold-text { color: #d4af37; }
-        .btn-menu { border: 1px solid #d4af37; padding: 20px; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; display: block; text-align: center; }
-        .btn-menu:hover { background: #d4af37; color: #000; }
+        .btn-menu { 
+            border: 1px solid rgba(212, 175, 55, 0.5); 
+            padding: 35px 20px; 
+            text-transform: uppercase; 
+            letter-spacing: 5px; 
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+            background: rgba(212, 175, 55, 0.03);
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+        }
+        .btn-menu:hover { 
+            background: #d4af37; 
+            color: #000; 
+            border-color: #d4af37;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); 
+            transform: translateY(-8px); 
+        }
+        .lang-btn { font-size: 0.7rem; letter-spacing: 3px; transition: 0.3s; opacity: 0.5; font-family: 'Cinzel', serif; }
+        .lang-btn:hover { opacity: 1; color: #d4af37; }
         .rtl { direction: rtl; }
+        .line { h-px; w-24; background: #d4af37; opacity: 0.4; margin: 20px auto; }
     </style>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen p-6">
 
-    <div class="fixed top-5 right-5 flex gap-4 bg-black p-2 border border-gray-800">
-        <button onclick="setLanguage('fr')" class="hover:text-[#d4af37] px-2">FR</button>
-        <button onclick="setLanguage('en')" class="hover:text-[#d4af37] px-2">EN</button>
-        <button onclick="setLanguage('ar')" class="hover:text-[#d4af37] px-2">AR</button>
+    <div class="fixed top-10 right-10 flex gap-8 z-50">
+        <button onclick="setLanguage('fr')" class="lang-btn uppercase">FR</button>
+        <button onclick="setLanguage('en')" class="lang-btn uppercase">EN</button>
+        <button onclick="setLanguage('ar')" class="lang-btn uppercase">AR</button>
     </div>
 
-    <header class="text-center mb-16">
-        <h1 id="main-title" class="text-4xl font-light tracking-[15px] gold-text uppercase mb-4">Sniper Immobilier</h1>
-        <p id="main-subtitle" class="text-gray-400 tracking-widest uppercase text-sm">Prestige & Excellence</p>
+    <header class="text-center mb-24">
+        <div class="mb-8 inline-block p-6 border border-[#d4af37] rounded-full shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+            <span class="gold-text text-3xl tracking-[12px] ml-[12px]">S</span>
+        </div>
+        <h1 id="main-title" class="text-5xl font-light tracking-[20px] gold-text uppercase mb-6">Sniper Immobilier</h1>
+        <div class="h-[1px] w-40 bg-[#d4af37] mx-auto opacity-40"></div>
+        <p id="main-subtitle" class="text-gray-500 tracking-[10px] uppercase text-[10px] mt-6 italic">Prestige & Excellence</p>
     </header>
 
-    <main class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
-        <a href="villas.html" class="btn-menu" id="menu-villas">Villas</a>
-        <a href="industriel.html" class="btn-menu" id="menu-industriel">Industriel</a>
-        <a href="encheres.html" class="btn-menu" id="menu-encheres">Enchères</a>
+    <main class="grid grid-cols-1 md:grid-cols-3 gap-10 w-full max-w-6xl px-4">
+        <a href="villas.html" class="btn-menu" id="menu-villas">Villas de Prestige</a>
+        <a href="industriel.html" class="btn-menu" id="menu-industriel">Immobilier Industriel</a>
+        <a href="encheres.html" class="btn-menu" id="menu-encheres">Ventes aux Enchères</a>
     </main>
+
+    <footer class="fixed bottom-10 text-[9px] text-gray-700 tracking-[5px] uppercase">
+        © 2026 Sniper Immobilier - Algérie
+    </footer>
 
     <script>
         const translations = {
-            fr: {
-                title: "Sniper Immobilier",
-                subtitle: "Prestige & Excellence",
-                villas: "Villas de Prestige",
-                industriel: "Immobilier Industriel",
-                encheres: "Ventes aux Enchères",
-                align: "ltr"
-            },
-            en: {
-                title: "Sniper Real Estate",
-                subtitle: "Prestige & Excellence",
-                villas: "Luxury Villas",
-                industriel: "Industrial Property",
-                encheres: "Public Auctions",
-                align: "ltr"
-            },
-            ar: {
-                title: "سنايبر العقارية",
-                subtitle: "فخامة وتميز",
-                villas: "فيلات فخمة",
-                industriel: "العقار الصناعي",
-                encheres: "المزادات العلنية",
-                align: "rtl"
-            }
+            fr: { title: "Sniper Immobilier", subtitle: "Prestige & Excellence", villas: "Villas de Prestige", industriel: "Immobilier Industriel", encheres: "Ventes aux Enchères", align: "ltr" },
+            en: { title: "Sniper Real Estate", subtitle: "Prestige & Excellence", villas: "Luxury Villas", industriel: "Industrial Property", encheres: "Public Auctions", align: "ltr" },
+            ar: { title: "سنايبر العقارية", subtitle: "فخامة وتميز", villas: "فيلات فخمة", industriel: "العقار الصناعي", encheres: "المزادات العلنية", align: "rtl" }
         };
 
         function setLanguage(lang) {
@@ -69,20 +75,13 @@
         function applyLanguage() {
             const lang = localStorage.getItem('selectedLanguage') || 'fr';
             const t = translations[lang];
-
             document.getElementById('main-title').innerText = t.title;
             document.getElementById('main-subtitle').innerText = t.subtitle;
             document.getElementById('menu-villas').innerText = t.villas;
             document.getElementById('menu-industriel').innerText = t.industriel;
             document.getElementById('menu-encheres').innerText = t.encheres;
-
-            if (t.align === "rtl") {
-                document.body.classList.add('rtl');
-            } else {
-                document.body.classList.remove('rtl');
-            }
+            document.body.classList.toggle('rtl', t.align === "rtl");
         }
-
         applyLanguage();
     </script>
 </body>
