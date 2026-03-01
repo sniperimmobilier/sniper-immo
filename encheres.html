@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Villas | Sniper Immobilier</title>
+    <title>Enchères | Sniper Immobilier</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&display=swap" rel="stylesheet">
     <style>
@@ -11,7 +11,7 @@
         .flag-dz { position: absolute; top: 25px; left: 40px; width: 40px; height: 26px; display: flex; border: 1px solid #333; z-index: 100; }
         .dz-green { background: #006233; width: 50%; height: 100%; }
         .dz-white { background: #fff; width: 50%; height: 100%; position: relative; }
-        .dz-star { position: absolute; left: -7px; top: 50%; transform: translateY(-50%); color: #d21034; font-size: 12px; line-height: 1; }
+        .dz-star { position: absolute; left: -8px; top: 50%; transform: translateY(-50%); color: #d21034; font-size: 14px; line-height: 1; }
         .gold-text { color: #d4af37; }
         .card { border: 1px solid #1a1a1a; padding: 20px; transition: 0.3s; background: #050505; }
         .card:hover { border-color: #d4af37; }
@@ -35,16 +35,16 @@
         const BASE_ID = "app101Rd6gKDfb4WT";
         const lang = localStorage.getItem('selectedLanguage') || 'fr';
         const ui = {
-            fr: { t: "Villas & Appartements", b: "← Retour", u: "DZD", r: false },
-            en: { t: "Villas & Apartments", b: "← Back", u: "DZD", r: false },
-            ar: { t: "فيلات وشقق", b: "رجوع →", u: "د.ج", r: true }
+            fr: { t: "Ventes aux Enchères", b: "← Retour", u: "DZD", r: false },
+            en: { t: "Public Auctions", b: "← Back", u: "DZD", r: false },
+            ar: { t: "المزادات العلنية", b: "رجوع →", u: "د.ج", r: true }
         }[lang];
 
         document.getElementById('page-title').innerText = ui.t;
         document.getElementById('btn-back').innerText = ui.b;
         if(ui.r) document.body.style.direction = 'rtl';
 
-        fetch("https://api.airtable.com/v0/" + BASE_ID + "/encheres", {
+        fetch("https://api.airtable.com/v0/" + BASE_ID + "/Encheres", {
             headers: { Authorization: "Bearer " + TOKEN }
         })
         .then(res => res.json())
