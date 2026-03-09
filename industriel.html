@@ -1,51 +1,83 @@
-<script>
-    const TOKEN = "patxXCh49k5hv8bZH"; 
-    const BASE_ID = "app101Rd6gKDfb4WT";
-    const lang = localStorage.getItem('selectedLanguage') || 'fr';
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industriel | Sniper Immobilier</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; min-height: 100vh; }
+        .gold-text { color: #d4af37; }
+        .card { border: 1px solid #1a1a1a; padding: 20px; background: #050505; transition: 0.3s; }
+        .card:hover { border-color: #d4af37; }
+    </style>
+</head>
+<body class="p-10">
+
+    <nav class="mb-20 text-right">
+        <a href="index.html" id="btn-back" class="gold-text uppercase tracking-[3px] text-[10px]">← Retour</a>
+    </nav>
+
+    <h1 id="page-title" class="text-center text-[14px] uppercase tracking-[8px] mb-16 font-light">Chargement...</h1>
     
-    const ui = {
-        fr: { t: "Immobilier Industriel", u: "DZD", b: "← Retour", s: "Superficie", z: "Zonage", e: "État" },
-        en: { t: "Industrial Real Estate", u: "DZD", b: "← Back", s: "Area", z: "Zoning", e: "Condition" },
-        ar: { t: "العقارات الصناعية", u: "د.ج", b: "رجوع →", s: "المساحة", z: "المنطقة", e: "الحالة" }
-    }[lang];
+    <div id="container" class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
+        </div>
 
-    document.getElementById('page-title').innerText = ui.t;
-    document.getElementById('btn-back').innerText = ui.b;
-    if(ui.r) document.body.style.direction = 'rtl';
-
-    fetch(`https://api.airtable.com/v0/${BASE_ID}/Industriel`, {
-        headers: { Authorization: `Bearer ${TOKEN}` }
-    })
-    .then(res => res.json())
-    .then(data => {
-        const container = document.getElementById('container');
+    <script>
+        const TOKEN = "patxXCh49k5hv8bZH"; 
+        const BASE_ID = "app101Rd6gKDfb4WT";
+        const lang = localStorage.getItem('selectedLanguage') || 'fr';
         
-        container.innerHTML = data.records.map(r => `
-            <div class="card bg-[#050505] p-6 border border-[#1a1a1a] hover:border-[#d4af37] transition-all">
-                ${r.fields.Photos ? `<img src="${r.fields.Photos[0].url}" class="w-full h-64 object-cover mb-6 grayscale hover:grayscale-0 transition-all">` : ''}
-                
-                <h3 class="text-[11px] uppercase tracking-[3px] mb-2 font-light text-gray-400">${r.fields.Ville || 'Algérie'}</h3>
-                
-                <p class="text-[#d4af37] text-[16px] font-medium mb-6">
-                    ${r.fields.Prix ? new Intl.NumberFormat().format(r.fields.Prix) : 'Sur devis'} ${ui.u}
-                </p>
-                
-                <div class="space-y-2 border-t border-[#1a1a1a] pt-4 text-[10px] uppercase tracking-[1px] font-light">
-                    <div class="flex justify-between">
-                        <span class="opacity-50">${ui.s}:</span>
-                        <span>${r.fields.Superficie || '-'} m²</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="opacity-50">${ui.z}:</span>
-                        <span>${r.fields.Zonage || '-'}</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="opacity-50">${ui.e}:</span>
-                        <span>${r.fields["État du bâtiment"] || '-'}</span>
+        const ui = {
+            fr: { t: "Immobilier Industriel", u: "DZD", b: "← Retour", s: "Superficie", z: "Zonage", e: "État", r: false },
+            en: { t: "Industrial Real Estate", u: "DZD", b: "← Back", s: "Area", z: "Zoning", e: "Condition", r: false },
+            ar: { t: "العقارات الصناعية", u: "د.ج", b: "رجوع →", s: "المساحة", z: "المنطقة", e: "الحالة", r: true }
+        }[lang];
+
+        document.getElementById('page-title').innerText = ui.t;
+        document.getElementById('btn-back').innerText = ui.b;
+        if(ui.r) document.body.style.direction = 'rtl';
+
+        fetch(`https://api.airtable.com/v0/${BASE_ID}/Industriel`, {
+            headers: { Authorization: `Bearer ${TOKEN}` }
+        })
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('container');
+            if (!data.records || data.records.length === 0) {
+                container.innerHTML = "<p class='text-center w-full col-span-3 opacity-50'>Aucun bien trouvé.</p>";
+                return;
+            }
+
+            container.innerHTML = data.records.map(r => `
+                <div class="card">
+                    ${r.fields.Photos ? `<img src="${r.fields.Photos[0].url}" class="w-full h-64 object-cover mb-6 grayscale hover:grayscale-0 transition-all">` : ''}
+                    <h3 class="text-[11px] uppercase tracking-[3px] mb-2 font-light text-gray-400">${r.fields.Ville || 'Algérie'}</h3>
+                    <p class="text-[#d4af37] text-[16px] font-medium mb-6">
+                        ${r.fields.Prix ? new Intl.NumberFormat().format(r.fields.Prix) : 'Sur devis'} ${ui.u}
+                    </p>
+                    <div class="space-y-2 border-t border-[#1a1a1a] pt-4 text-[10px] uppercase tracking-[1px] font-light">
+                        <div class="flex justify-between">
+                            <span class="opacity-50">${ui.s}:</span>
+                            <span>${r.fields.Superficie || '-'} m²</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="opacity-50">${ui.z}:</span>
+                            <span>${r.fields.Zonage || '-'}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="opacity-50">${ui.e}:</span>
+                            <span>${r.fields["État du bâtiment"] || '-'}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        `).join('');
-    })
-    .catch(err => console.error("Erreur:", err));
-</script>
+            `).join('');
+        })
+        .catch(err => {
+            console.error("Erreur:", err);
+            document.getElementById('page-title').innerText = "Erreur de connexion";
+        });
+    </script>
+</body>
+</html>
