@@ -7,13 +7,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; min-height: 100vh; }
+        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; }
         .flag-dz { position: absolute; top: 25px; left: 40px; width: 40px; height: 26px; display: flex; border: 1px solid #333; z-index: 100; }
         .dz-green { background: #006233; width: 50%; height: 100%; }
         .dz-white { background: #fff; width: 50%; height: 100%; position: relative; }
         .dz-star { position: absolute; left: -8px; top: 50%; transform: translateY(-50%); color: #d21034; font-size: 14px; line-height: 1; }
         .gold-text { color: #d4af37; }
-        .card { border: 1px solid #1a1a1a; padding: 20px; background: #050505; }
+        .card { border: 1px solid #1a1a1a; padding: 20px; transition: 0.3s; background: #050505; }
+        .card:hover { border-color: #d4af37; }
     </style>
 </head>
 <body class="p-10">
@@ -27,9 +28,7 @@
     </nav>
 
     <h1 id="page-title" class="text-center text-[14px] uppercase tracking-[8px] mb-16 font-light">Industriel</h1>
-    
-    <div id="container" class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
-        </div>
+    <div id="container" class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto"></div>
 
     <script>
         const TOKEN = "patxXCh49k5hv8bZH"; 
@@ -46,31 +45,19 @@
         document.getElementById('btn-back').innerText = ui.b;
         if(ui.r) document.body.style.direction = 'rtl';
 
-        // Connexion Airtable
-        fetch(`https://api.airtable.com/v0/${BASE_ID}/Industriel`, {
-            headers: { Authorization: `Bearer ${TOKEN}` }
+        fetch("https://api.airtable.com/v0/" + BASE_ID + "/Industriel", {
+            headers: { Authorization: "Bearer " + TOKEN }
         })
-        .then(response => response.json())
+        .then(res => res.json())
         .then(data => {
             const container = document.getElementById('container');
-            if (!data.records || data.records.length === 0) {
-                container.innerHTML = "<p class='text-center w-full col-span-3 opacity-50'>Aucune donnée trouvée.</p>";
-                return;
-            }
-            
             container.innerHTML = data.records.map(r => `
                 <div class="card">
-                    ${r.fields.Photos ? `<img src="${r.fields.Photos[0].url}" class="w-full h-64 object-cover mb-6 grayscale">` : ''}
-                    <h3 class="text-[11px] uppercase tracking-[3px] mb-2">${r.fields.Nom || 'Sans Nom'}</h3>
-                    <p class="text-[#d4af37] text-[13px] font-light">
-                        ${new Intl.NumberFormat().format(r.fields.Prix || 0)} ${ui.u}
-                    </p>
-                </div>
-            `).join('');
-        })
-        .catch(error => {
-            console.error("Erreur Airtable:", error);
-            document.getElementById('container').innerHTML = "<p class='text-center w-full color-red'>Erreur de connexion aux données.</p>";
+                    ${r.fields.Photos ? `<img src="${r.fields.Photos[0].url}" class="w-full h-64 object-cover mb-6 grayscale hover:grayscale-0 transition-all">` : ''}
+                    <h3 class="text-[11px] uppercase tracking-[3px] mb-2 font-light">${r.fields.Nom || 'Sans Nom'}</h3>
+                    <p class="text-[#d4af37] text-[15px] font-medium mb-4">${new Intl.NumberFormat().format(r.fields.Prix || 0)} ${ui.u}</p>
+                    <p class="text-[11px] text-gray-400 font-light border-t border-[#1a1a1a] pt-4">${r.fields.Description || ''}</p>
+                </div>`).join('');
         });
     </script>
 </body>
